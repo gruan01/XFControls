@@ -10,8 +10,9 @@ Just like BoxView, but this control is a "Circle", and can put child element in 
 ~~~
 
 Properties:
+
 Name | Desc | Type | Default Value
--|-|-|-
+|---|---|---|---|
 Radius | 半径 | double | 40
 
 ## Notice
