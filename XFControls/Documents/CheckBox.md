@@ -19,7 +19,7 @@ xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
 ## Properties
 
 Name | Description | Type | Default Value
--|-|-|-
+---| ---| ---|---
 Checked | | bool | False
 ShowLabel | Wheather show label 是否显示标签文本 | bool | False
 Text | Label's Text 标签文本 | string | null
