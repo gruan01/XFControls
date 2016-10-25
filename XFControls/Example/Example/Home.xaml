@@ -6,14 +6,70 @@
              >
 
   <Grid>
-    <ctrls:Border WidthRequest="100" HeightRequest="100"
+    <Grid.RowDefinitions>
+      <RowDefinition Height="200" />
+      <RowDefinition Height="30" />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+    <ctrls:Flip Grid.Row="0"
+                AutoPlay="True"
+                Interval="3000"
+                ItemsSource="{Binding FlipSource}"
+      >
+
+      <ctrls:Flip.ItemTemplate>
+        <DataTemplate>
+          <Grid>
+            <Image Source="{Binding Img}" Aspect="AspectFill" />
+            <Label Text="{Binding Desc}"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="End"
+                   TextColor="White"
+                   Margin="10"
+                   />
+          </Grid>
+        </DataTemplate>
+      </ctrls:Flip.ItemTemplate>
+
+    </ctrls:Flip>
+
+    <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="2">
+
+      <ctrls:Border BackgroundColor="Red"
+                    CornerRadius="10"
+                    WidthRequest="40"
+                    Padding="5,2"
+        >
+        <Label Text="快报" TextColor="White" 
+               HorizontalTextAlignment="Center" 
+               VerticalTextAlignment="Center"
+      />
+      </ctrls:Border>
+
+      <ctrls:Marquee ItemsSource="{Binding MarqueeSource}">
+        <ctrls:Marquee.ItemTemplate>
+          <DataTemplate>
+            <Label VerticalOptions="Center"
+                    LineBreakMode="TailTruncation"
+                    Text="{Binding}"
+                    Margin="2"
+                   FontSize="18"
+            />
+          </DataTemplate>
+        </ctrls:Marquee.ItemTemplate>
+      </ctrls:Marquee>
+    </StackLayout>
+
+    <ctrls:Border Grid.Row="2"
+                  WidthRequest="100" HeightRequest="100"
                   HorizontalOptions="Center"
                   VerticalOptions="Center"
                   IsClippedToBorder="True"
                   CornerRadius="10,0" Stroke="Green" StrokeThickness="1,2,3,4">
 
       <Image Source="https://avatars2.githubusercontent.com/u/7332414" Aspect="AspectFit" />
-      
+
     </ctrls:Border>
   </Grid>
 
