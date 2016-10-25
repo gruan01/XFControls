@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<DataTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AsNum.XFControls.Templates.RatingBarItemTemplate"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls"
+             xmlns:effects="clr-namespace:AsNum.XFControls.Effects"
+             >
+
+  <Grid WidthRequest="40" HeightRequest="40">
+    <Image Source="{ctrls:ImageResource AsNum.XFControls.Imgs.Star-Unchecked.png}}"
+           Aspect="AspectFit"
+           WidthRequest="40"
+           HeightRequest="40"
+             />
+
+    <Image Source="{ctrls:ImageResource AsNum.XFControls.Imgs.Star-Checked.png}}"
+           HorizontalOptions="Start"
+           HeightRequest="40"
+           WidthRequest="40"
+           Aspect="AspectFill"
+           effects:Clip.Bounds="0"
+           />
+  </Grid>
+
+</DataTemplate>

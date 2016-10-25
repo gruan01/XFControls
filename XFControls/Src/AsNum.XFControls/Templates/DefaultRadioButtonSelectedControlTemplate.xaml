@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ControlTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AsNum.XFControls.Templates.DefaultRadioButtonSelectedControlTemplate"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+                 >
+
+  <ctrls:Border BackgroundColor="#efefef"
+                Stroke="Red"
+                CornerRadius="10"
+                Padding="5,6"
+                WidthRequest="80"
+                StrokeThickness="0.5"
+                HorizontalOptions="Center"
+                >
+
+    <!--在此处嵌套的使用 style 不起作用-->
+    <!--<ctrls:Border.Resources>
+      <ResourceDictionary>
+        <Style TargetType="Label">
+          <Setter Property="TextColor" Value="Red" />
+        </Style>
+      </ResourceDictionary>
+    </ctrls:Border.Resources>-->
+
+    <!--<ctrls:Border.Style>
+      <Style TargetType="Label" CanCascade="True">
+        <Setter Property="TextColor" Value="Red" />
+      </Style>
+    </ctrls:Border.Style>-->
+
+    <!--<ctrls:Border.Style>
+      <Style TargetType="Label" CanCascade="True">
+        <Setter Property="TextColor" Value="Red" />
+      </Style>
+    </ctrls:Border.Style>-->
+
+    <ContentPresenter HorizontalOptions="CenterAndExpand">
+      <ContentPresenter.Style>
+        <Style TargetType="Label">
+          <Setter Property="TextColor" Value="Red" />
+        </Style>
+      </ContentPresenter.Style>
+    </ContentPresenter>
+  </ctrls:Border>
+
+</ControlTemplate>

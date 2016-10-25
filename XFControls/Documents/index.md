@@ -25,7 +25,7 @@
 | [Marquee](Marquee.md) | 跑马灯 | | Y | Y | N | N |
 | [RadioGroup](RadioGroup.md) | 单选框组 | | Y | Y | N | N |
 | [RadioButtonGroup](RadioButtonGroup.md) | 单选按钮组 | | Y | Y | N | N |
-| [RatingBar](RatingBar.md) | 打分条 | Y | | Y | N | N |
+| [RatingBar](RatingBar.md) | 打分条 | Y | Y | Y | N | N |
 | [Repeater](Repeater.md) | | | Y | Y | N | N |
 | [Segment](Segment.md) | | | Y | Y | N | N |
 | [Stepper](Stepper.md) | | | Y | Y | N | N |

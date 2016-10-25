@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ControlTemplate xmlns="http://xamarin.com/schemas/2014/forms" 
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                 x:Class="AsNum.XFControls.Templates.TabViewTabBarControlTemplate"
+                 xmlns:ctrls="clr-namespace:AsNum.XFControls"
+                 >
+  <Grid>
+    <ctrls:Border Margin="0" Padding="0" Stroke="#cccccc" StrokeThickness="0.5">
+    </ctrls:Border>
+    <ContentPresenter />
+  </Grid>
+</ControlTemplate>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AsNum.XFControls.TabbedGridView"
+             xmlns:cv="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+      >
+
+  <Grid.RowDefinitions>
+    <RowDefinition />
+    <RowDefinition Height="Auto" />
+  </Grid.RowDefinitions>
+
+  <Grid x:Name="backgroundGrid" Grid.Row="0" Grid.RowSpan="2" />
+  <Grid x:Name="contentGrid" Grid.Row="0" />
+  <cv:ItemsView x:Name="itemsView" Grid.Row="1" />
+  
+</Grid>

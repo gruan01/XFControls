@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ControlTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AsNum.XFControls.Templates.TabViewTabControlTemplate"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls"
+             xmlns:cvts="clr-namespace:AsNum.XFControls.Converters"
+             >
+  <!--https://developer.xamarin.com/guides/xamarin-forms/templates/control-templates/template-binding/-->
+
+  <ctrls:Border StrokeThickness="0.2"
+                Stroke="#cccccc">
+
+    <ctrls:Border.Triggers>
+      <DataTrigger TargetType="ctrls:Border"
+                   Binding="{TemplateBinding BindingContext.IsSelected}"
+                   Value="True">
+        <!--<Setter Property="StrokeThickness" Value="1,1,0,1" />-->
+        <Setter Property="BackgroundColor" Value="White" />
+      </DataTrigger>
+
+      <DataTrigger TargetType="ctrls:Border"
+                   Binding="{TemplateBinding BindingContext.IsSelected}"
+                   Value="False">
+        <Setter Property="StrokeThickness" Value="0.2" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+      </DataTrigger>
+
+
+      <!--选中，顶部-->
+      <MultiTrigger TargetType="ctrls:Border">
+        <MultiTrigger.Conditions>
+          <BindingCondition Binding="{TemplateBinding BindingContext.IsSelected}"
+                            Value="True" />
+          <BindingCondition Binding="{TemplateBinding BindingContext.TabPosition}"
+                            Value="Top" />
+        </MultiTrigger.Conditions>
+        <Setter Property="StrokeThickness" Value="1,1,1,0" />
+      </MultiTrigger>
+
+      <!--选中，左边-->
+      <MultiTrigger TargetType="ctrls:Border">
+        <MultiTrigger.Conditions>
+          <BindingCondition Binding="{TemplateBinding BindingContext.IsSelected}"
+                            Value="True" />
+          <BindingCondition Binding="{TemplateBinding BindingContext.TabPosition}"
+                            Value="Left" />
+        </MultiTrigger.Conditions>
+        <Setter Property="StrokeThickness" Value="1,1,0,1" />
+      </MultiTrigger>
+
+      <!--选中，右边-->
+      <MultiTrigger TargetType="ctrls:Border">
+        <MultiTrigger.Conditions>
+          <BindingCondition Binding="{TemplateBinding BindingContext.IsSelected}"
+                            Value="True" />
+          <BindingCondition Binding="{TemplateBinding BindingContext.TabPosition}"
+                            Value="Right" />
+        </MultiTrigger.Conditions>
+        <Setter Property="StrokeThickness" Value="0,1,1,1" />
+      </MultiTrigger>
+
+      <!--选中，底部-->
+      <MultiTrigger TargetType="ctrls:Border">
+        <MultiTrigger.Conditions>
+          <BindingCondition Binding="{TemplateBinding BindingContext.IsSelected}"
+                            Value="True" />
+          <BindingCondition Binding="{TemplateBinding BindingContext.TabPosition}"
+                            Value="Bottom" />
+        </MultiTrigger.Conditions>
+        <Setter Property="StrokeThickness" Value="1,0,1,1" />
+      </MultiTrigger>
+
+    </ctrls:Border.Triggers>
+
+    <ContentPresenter />
+
+  </ctrls:Border>
+
+</ControlTemplate>

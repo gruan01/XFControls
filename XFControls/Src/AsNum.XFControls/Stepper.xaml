@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AsNum.XFControls.Stepper"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls"
+             >
+  <ContentView.Content>
+
+    <Grid HorizontalOptions="Center" 
+          VerticalOptions="Center">
+      
+      <ctrls:Border x:Name="border"
+                    CornerRadius="10"
+                    Stroke="{DynamicResource BorderColor}"
+                    StrokeThickness="0.5"
+                    HeightRequest="20"
+                  >
+
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+          </Grid.ColumnDefinitions>
+
+          <StackLayout Grid.Column="0" 
+                       x:Name="btnReduce" 
+                       Padding="15,0,5,0" 
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand">
+            <Label Text="-" 
+                   TextColor="{DynamicResource TextColor}"
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand" />
+          </StackLayout>
+
+          <BoxView Grid.Column="1"
+                   BackgroundColor="{DynamicResource BorderColor}"
+                   WidthRequest="0.5" />
+          
+          <Label Grid.Column="2" x:Name="lbl"
+                 TextColor="{DynamicResource TextColor}"
+                 />
+          
+          <BoxView Grid.Column="3" 
+                   BackgroundColor="{DynamicResource BorderColor}"
+                   WidthRequest="0.5" />
+
+          <StackLayout Grid.Column="4" 
+                       x:Name="btnIncrease" 
+                       Padding="5,0,15,0" 
+                       HorizontalOptions="CenterAndExpand" 
+                       VerticalOptions="CenterAndExpand">
+            <Label Text="+" 
+                   TextColor="{DynamicResource TextColor}"
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="CenterAndExpand"/>
+          </StackLayout>
+        </Grid>
+
+      </ctrls:Border>
+
+    </Grid>
+  </ContentView.Content>
+</ContentView>

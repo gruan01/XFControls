@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ControlTemplate xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AsNum.XFControls.Templates.DefaultRadioButtonUnSelectedControlTemplate"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
+
+  <!--不可设置背景颜色，否则导致不可点击，原因未知-->
+  <ctrls:Border BackgroundColor="Transparent"
+                Stroke="#efefef"
+                CornerRadius="10"
+                Padding="5,6"
+                WidthRequest="80"
+                StrokeThickness="0.5"
+                >
+    <ContentPresenter HorizontalOptions="Center" />
+  </ctrls:Border>
+
+</ControlTemplate>
