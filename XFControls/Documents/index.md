@@ -2,13 +2,13 @@
 
 ## XFControl 是什么 ? What is it ?
 
-* AsNum.XFControl 是一组用于 Xamarin.Forms 的自定义控件集.
-* AsNum.XFControl is a set of Xamarin.Forms' Control & enhancement function. 
+* AsNum.XFControls 是一组用于 Xamarin.Forms 的自定义控件集.
+* AsNum.XFControls is a set of Xamarin.Forms' Control & enhancement function. 
 
 ## 如何使用 How to use it ?
-* XFControl 只依赖于 Xamarin.Forms
-* XFControl only dependency Xamarin.Forms
-* Nuget install : 
+* XFControls 只依赖于 Xamarin.Forms
+* XFControls only dependency Xamarin.Forms
+* Nuget : Install-Package XFControls 
 
 ## 功能 Features 
 ### 控件/布局列表 Control & Layout

@@ -93,8 +93,9 @@ Name | Desc | Type | Default Value
 ItemsSource | Data Sources | IEnumerable |
 ItemTemplate | Item's apperance Template | DataTemplate
 ItemTemplateSelector | Item's template selector, *if ItemTemplateSelector has value, will not use ItemTemplate* | DataTemplateSelector
-TabTemplate | Item's header Template | DataTemplate
+TabTemplate | Item's header Template | DataTemplate |
 TabTemplateSelector | Item's header Template Selector, *if TabTemplateSelector has value, will not use TabTemplate* | DataTemplateSelector
+TabControlTemplate | Item's header Control Template | ControlTemplate | [TabViewTabControlTemplate](https://github.com/gruan01/XFControls/blob/master/XFControls/Src/AsNum.XFControls/Templates/TabViewTabControlTemplate.xaml)
 TabBarControlTemplate| TabBar's apperance. TabViewTabBarControlTemplate is default apperance, you can see how to define it. | ControlTemplate | [TabViewTabBarControlTemplate](https://github.com/gruan01/XFControls/blob/master/XFControls/Src/AsNum.XFControls/Templates/TabViewTabBarControlTemplate.xaml)
 SelectedItem | Current Selected tab's binding context (View Model) | object
 SelectedIndex | Current Selected index | int
@@ -103,3 +104,6 @@ TabHeightRequest | Tab's header HeightRequest | int | 40
 TabPosition | Tab's header's position, can choice Top / Right / Bottom or Left , default is Top | TabViewPositions | Top
 TabBarBackgroundColor | Tab's header area's background color | Color | EEEEEE
 TransitionType | Can choice Fade or None | TabViewTransitionTypes | Fade
+
+## Notice
+Now only support MVVM , not support direct add TabpageView in to it. 
