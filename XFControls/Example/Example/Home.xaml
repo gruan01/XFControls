@@ -25,6 +25,7 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="200" />
       <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
       <RowDefinition />
     </Grid.RowDefinitions>
 
@@ -96,7 +97,13 @@
     -->
     <!--/FontIcon Example-->
 
-    <ctrls:TabView Grid.Row="2"
+    <ctrls:CheckBox Grid.Row="2" 
+                    Checked="True" 
+                    Text="Just a label"
+                    ShowLabel="True"
+                    />
+    
+    <ctrls:TabView Grid.Row="3"
                    ItemsSource="{Binding TabViewSource}"
                    TabHeightRequest="60"
                    TabPosition="Bottom">

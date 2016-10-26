@@ -4,7 +4,9 @@ Just like BoxView, but this control is a "Circle", and can put child element in 
 
 ## Xaml
 ~~~
-<ctrls:CircleBox Radius="50" Grid.Row="1" BackgroundColor="Lime">
+<ctrls:CircleBox Radius="50" 
+                 Grid.Row="1" 
+                 BackgroundColor="Lime">
     <Image Source="http://v1.qzone.cc/pic/201407/13/11/05/53c1f77cdbd01600.jpg%21600x600.jpg" WidthRequest="100" HeightRequest="100" Aspect="AspectFill" />
 </ctrls:CircleBox>
 ~~~

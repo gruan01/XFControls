@@ -21,7 +21,7 @@ namespace AsNum.XFControls.Binders {
             BindableProperty.CreateAttached("PlaceHolderColor",
                 typeof(Color),
                 typeof(EditorBinder),
-                Color.FromHex("cccccc"),
+                Color.FromHex("#cccccc"),
                 propertyChanged: Changed
                 );
 

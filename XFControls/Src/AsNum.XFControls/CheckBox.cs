@@ -43,7 +43,7 @@ namespace AsNum.XFControls {
 
         private static void CheckedChanged(BindableObject bindable, object oldValue, object newValue) {
             var chk = (CheckBox)bindable;
-            var source = chk.Checked ? CheckedImg : UnCheckedImg;
+            var source = chk.Checked ? chk.OnImg: chk.OffImg;
             chk.Icon.Source = source;// new BytesImageSource(datas);
         }
         #endregion
@@ -151,21 +151,67 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        /// <summary>
-        /// 选中状态的图片资源
-        /// </summary>
-        private static readonly ImageSource CheckedImg;
+        #region ImgSource
+        public static readonly BindableProperty OnImgProperty =
+            BindableProperty.Create("OnImg",
+                typeof(ImageSource),
+                typeof(CheckBox),
+                ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Checked.png"),
+                propertyChanged: ImgSourceChanged
+                );
 
-        /// <summary>
-        /// 未选中状态的图片资源
-        /// </summary>
-        private static readonly ImageSource UnCheckedImg;
-
-        static CheckBox() {
-            //从资源文件中加载图片, 要求图片必须是 嵌入的资源
-            UnCheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");// GetImg("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");
-            CheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Checked.png");// GetImg("AsNum.XFControls.Imgs.Checkbox-Checked.png");
+        public ImageSource OnImg {
+            get {
+                return (ImageSource)this.GetValue(OnImgProperty);
+            }
+            set {
+                this.SetValue(OnImgProperty, value);
+            }
         }
+
+        public static readonly BindableProperty OffImgProperty =
+            BindableProperty.Create("OffImg",
+                typeof(ImageSource),
+                typeof(CheckBox),
+                ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Unchecked.png"),
+                propertyChanged: ImgSourceChanged
+                );
+
+        public ImageSource OffImg {
+            get {
+                return (ImageSource)this.GetValue(OffImgProperty);
+            }
+            set {
+                this.SetValue(OffImgProperty, value);
+            }
+        }
+
+        private static void ImgSourceChanged(BindableObject bindable, object oldValue, object newValue) {
+            var chk = (CheckBox)bindable;
+            chk.UpdateImageSource(chk.OnImg, chk.OffImg);
+        }
+
+        private void UpdateImageSource(ImageSource on, ImageSource off) {
+            this.Icon.Source = this.Checked ? on : off;
+        }
+
+        #endregion
+
+        ///// <summary>
+        ///// 选中状态的图片资源
+        ///// </summary>
+        //private static readonly ImageSource DefaultCheckedImg;
+
+        ///// <summary>
+        ///// 未选中状态的图片资源
+        ///// </summary>
+        //private static readonly ImageSource DefaultUnCheckedImg;
+
+        //static CheckBox() {
+        //    //从资源文件中加载图片, 要求图片必须是 嵌入的资源
+        //    DefaultUnCheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Unchecked.png");
+        //    DefaultCheckedImg = ImageSource.FromResource("AsNum.XFControls.Imgs.Checkbox-Checked.png");
+        //}
 
         private readonly Grid Grid;
         private readonly Label Label;
@@ -175,6 +221,12 @@ namespace AsNum.XFControls {
         /// 内部使用点击命令
         /// </summary>
         private ICommand TapCmd { get; }
+
+        //public static ImageSource DefaultCheckedImg1 {
+        //    get {
+        //        return DefaultCheckedImg;
+        //    }
+        //}
 
         public CheckBox() {
             this.TapCmd = new Command(() => {
@@ -199,7 +251,10 @@ namespace AsNum.XFControls {
 
             this.Content = this.Grid;
 
-            this.Label = new Label() { BindingContext = this };
+            this.Label = new Label() {
+                BindingContext = this,
+                VerticalTextAlignment = TextAlignment.Center
+            };
             this.Label.SetBinding(Label.TextProperty, "Text");
             this.Label.SetBinding(Label.IsVisibleProperty, "ShowLabel");
             this.Label.SetValue(Grid.ColumnProperty, 1);
@@ -209,7 +264,7 @@ namespace AsNum.XFControls {
             this.Icon = new Image() {
                 WidthRequest = this.Size,
                 HeightRequest = this.Size,
-                Source = UnCheckedImg // new BytesImageSource(UnCheckedImg)
+                Source = this.OffImg
             };
             this.Icon.SetValue(Grid.ColumnProperty, 0);
             this.Grid.Children.Add(this.Icon);

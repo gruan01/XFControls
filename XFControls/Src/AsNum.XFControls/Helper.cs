@@ -1,7 +1,9 @@
-﻿using Microsoft.CSharp.RuntimeBinder;
+﻿using AsNum.XFControls.Services;
+using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.IO;
 using System.Runtime.CompilerServices;
+using Xamarin.Forms;
 
 namespace AsNum.XFControls {
     internal static class Helper {
@@ -63,5 +65,6 @@ namespace AsNum.XFControls {
 
             return bytes;
         }
+
     }
 }
