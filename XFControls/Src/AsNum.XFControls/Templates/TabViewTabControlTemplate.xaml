@@ -34,7 +34,8 @@
           <BindingCondition Binding="{TemplateBinding BindingContext.TabPosition}"
                             Value="Top" />
         </MultiTrigger.Conditions>
-        <Setter Property="StrokeThickness" Value="1,1,1,0" />
+        <!--<Setter Property="StrokeThickness" Value="1,1,1,0" />-->
+        <Setter Property="StrokeThickness" Value="0" />
       </MultiTrigger>
 
       <!--选中，左边-->
@@ -45,7 +46,8 @@
           <BindingCondition Binding="{TemplateBinding BindingContext.TabPosition}"
                             Value="Left" />
         </MultiTrigger.Conditions>
-        <Setter Property="StrokeThickness" Value="1,1,0,1" />
+        <!--<Setter Property="StrokeThickness" Value="1,1,0,1" />-->
+        <Setter Property="StrokeThickness" Value="0" />
       </MultiTrigger>
 
       <!--选中，右边-->
@@ -56,7 +58,8 @@
           <BindingCondition Binding="{TemplateBinding BindingContext.TabPosition}"
                             Value="Right" />
         </MultiTrigger.Conditions>
-        <Setter Property="StrokeThickness" Value="0,1,1,1" />
+        <!--<Setter Property="StrokeThickness" Value="0,1,1,1" />-->
+        <Setter Property="StrokeThickness" Value="0" />
       </MultiTrigger>
 
       <!--选中，底部-->
@@ -67,7 +70,8 @@
           <BindingCondition Binding="{TemplateBinding BindingContext.TabPosition}"
                             Value="Bottom" />
         </MultiTrigger.Conditions>
-        <Setter Property="StrokeThickness" Value="1,0,1,1" />
+        <!--<Setter Property="StrokeThickness" Value="1,0,1,1" />-->
+        <Setter Property="StrokeThickness" Value="0" />
       </MultiTrigger>
 
     </ctrls:Border.Triggers>

@@ -1,6 +1,6 @@
 # Border
 
-## Xaml Simple
+## Xaml Sample
 ~~~
 ...
 ...

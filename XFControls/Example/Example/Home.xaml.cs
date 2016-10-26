@@ -1,10 +1,13 @@
-﻿using System;
+﻿using AsNum.XFControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using System.Windows.Input;
+using System.ComponentModel;
 
 namespace Example {
     public partial class Home : ContentPage {
@@ -28,6 +31,17 @@ namespace Example {
                 "【股市大直播】季报给力！这些股利润惊人"
             };
 
+
+        public IEnumerable<TabViewItem> TabViewSource { get; }
+            = new List<TabViewItem>() {
+                new TabViewItem() { Glyph = (char)0xe65e, Title = "生鲜果蔬" },
+                new TabViewItem() { Glyph = (char)0xe61a, Title = "粮油米面" },
+                new TabViewItem() { Glyph = (char)0xe64b, Title = "坚果副食" },
+                new TabViewItem() { Glyph = (char)0xe608, Title = "鸡鸭禽蛋" },
+                new TabViewItem() { Glyph = (char)0xe886, Title = "猪牛羊肉" },
+                new TabViewItem() { Glyph = (char)0xe610, Title = "南北小吃" }
+            };
+
         public Home() {
             InitializeComponent();
 
@@ -41,5 +55,35 @@ namespace Example {
         public string Desc { get; set; }
 
         public string Img { get; set; }
+    }
+
+
+
+    /// <summary>
+    /// Notice : TabView require DataSource's item implementation ISelectable
+    /// </summary>
+    public class TabViewItem : ISelectable, INotifyPropertyChanged {
+
+        public char Glyph { get; set; }
+
+        public bool IsSelected {
+            get; set;
+        }
+
+        public ICommand SelectedCommand {
+            get; set;
+        }
+
+        public string Title { get; set; }
+
+        public ICommand UnSelectedCommand {
+            get; set;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyOfPropertyChange(string propertyName) {
+            this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -12,7 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\Border.md = Documents\Border.md
 		Documents\CheckBox.md = Documents\CheckBox.md
 		Documents\CircleBox.md = Documents\CircleBox.md
+		Documents\Flip.md = Documents\Flip.md
+		FontIcon.md = FontIcon.md
+		Documents\FontIcon.md = Documents\FontIcon.md
 		Documents\Index.md = Documents\Index.md
+		Documents\Marquee.md = Documents\Marquee.md
+		Documents\TabView.md = Documents\TabView.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsNum.XFControls", "Src\AsNum.XFControls\AsNum.XFControls.csproj", "{09EE72BC-022B-4C66-B805-706B9B90332D}"

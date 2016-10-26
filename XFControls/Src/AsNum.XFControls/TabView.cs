@@ -372,7 +372,7 @@ namespace AsNum.XFControls {
             BindableProperty.Create("TabBarBackgroundColor",
                 typeof(Color),
                 typeof(TabView),
-                Color.Transparent
+                Color.FromHex("EEEEEE")
                 );
 
         /// <summary>

@@ -5,6 +5,22 @@
              xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
              >
 
+  <ContentPage.Resources>
+    <ResourceDictionary>
+
+      <!-- 自定义字体，请参考： https://blog.verslu.is/xamarin/xamarin-forms-xamarin/using-custom-fonts-on-ios-and-android-with-xamarin-forms/ -->
+      <!--Put your font file to
+      Android : Assets/Fonts as AndroidAsset
+      iOS : Resources/Fonts as BundleResource-->
+      <OnPlatform x:TypeArguments="x:String"
+                  Android="Fonts/iconfont.woff"
+                  iOS="iconfont"
+                  WinPhone="Fonts/iconfont.woff"
+                  x:Key="font" />
+    </ResourceDictionary>
+
+  </ContentPage.Resources>
+
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="200" />
@@ -12,6 +28,7 @@
       <RowDefinition />
     </Grid.RowDefinitions>
 
+    <!--Flip Example-->
     <ctrls:Flip Grid.Row="0"
                 AutoPlay="True"
                 Interval="3000"
@@ -33,7 +50,11 @@
       </ctrls:Flip.ItemTemplate>
 
     </ctrls:Flip>
+    <!--/Flip Example -->
 
+
+
+    <!--Marquee Example-->
     <StackLayout Grid.Row="1" Orientation="Horizontal" Margin="2">
 
       <ctrls:Border BackgroundColor="Red"
@@ -41,8 +62,8 @@
                     WidthRequest="40"
                     Padding="5,2"
         >
-        <Label Text="快报" TextColor="White" 
-               HorizontalTextAlignment="Center" 
+        <Label Text="快报" TextColor="White"
+               HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"
       />
       </ctrls:Border>
@@ -60,7 +81,79 @@
         </ctrls:Marquee.ItemTemplate>
       </ctrls:Marquee>
     </StackLayout>
+    <!--/Marquee Example-->
 
+
+
+
+    <!--FontIcon Example-->
+    <!--
+    <ctrls:FontIcon FontFamily="{StaticResource font}" 
+                    Glyph="&#xe626;" 
+                    FontSize="20"
+                    Color="Red"
+                    Grid.Row="2" />
+    -->
+    <!--/FontIcon Example-->
+
+    <ctrls:TabView Grid.Row="2"
+                   ItemsSource="{Binding TabViewSource}"
+                   TabHeightRequest="60"
+                   TabPosition="Bottom">
+
+      <ctrls:TabView.TabTemplate>
+        <DataTemplate>
+          <StackLayout>
+            <ctrls:FontIcon Glyph="{Binding Glyph}"
+                            FontFamily="{StaticResource font}"
+                            FontSize="25"
+                            Color="Gray"
+                            HorizontalOptions="Center"
+                          >
+              <ctrls:FontIcon.Triggers>
+                <DataTrigger TargetType="ctrls:FontIcon"
+                             Binding="{Binding IsSelected}"
+                             Value="True"
+                             >
+                  <Setter Property="Color" Value="Red" />
+                </DataTrigger>
+              </ctrls:FontIcon.Triggers>
+            </ctrls:FontIcon>
+
+            <Label Text="{Binding Title}"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   FontSize="10">
+
+              <Label.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding IsSelected}"
+                             Value="True"
+                           >
+                  <Setter Property="TextColor" Value="Red" />
+                </DataTrigger>
+              </Label.Triggers>
+            </Label>
+            
+          </StackLayout>
+        </DataTemplate>
+      </ctrls:TabView.TabTemplate>
+
+      <ctrls:TabView.ItemTemplate>
+        <DataTemplate>
+          <Label Text="{Binding Title}"
+                 HorizontalOptions="Center" />          
+        </DataTemplate>
+      </ctrls:TabView.ItemTemplate>
+      
+    </ctrls:TabView>
+
+
+
+
+    <!--Border Example-->
+    <!--
     <ctrls:Border Grid.Row="2"
                   WidthRequest="100" HeightRequest="100"
                   HorizontalOptions="Center"
@@ -71,6 +164,8 @@
       <Image Source="https://avatars2.githubusercontent.com/u/7332414" Aspect="AspectFit" />
 
     </ctrls:Border>
+    -->
+    <!--/Border Example-->
   </Grid>
 
 </ContentPage>
