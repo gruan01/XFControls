@@ -8,9 +8,9 @@
 * XFControls only dependency Xamarin.Forms
 * Nuget : Install-Package XFControls 
 
-# [Documents](https://github.com/gruan01/XFControls/blob/master/XFControls/Documents/index.md)
+## [Documents](https://github.com/gruan01/XFControls/blob/master/XFControls/Documents/index.md)
 
-XFCotrols include:
+## XFCotrols include:
 * Border
 * CheckBox
 * CircleBox
