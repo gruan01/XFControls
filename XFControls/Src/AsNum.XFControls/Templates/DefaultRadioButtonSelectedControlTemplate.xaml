@@ -8,7 +8,6 @@
   <ctrls:Border BackgroundColor="#efefef"
                 Stroke="Red"
                 CornerRadius="10"
-                Padding="5,6"
                 WidthRequest="80"
                 StrokeThickness="0.5"
                 HorizontalOptions="Center"
@@ -35,7 +34,7 @@
       </Style>
     </ctrls:Border.Style>-->
 
-    <ContentPresenter HorizontalOptions="CenterAndExpand">
+    <ContentPresenter Padding="5">
       <ContentPresenter.Style>
         <Style TargetType="Label">
           <Setter Property="TextColor" Value="Red" />

@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using AsNum.XFControls.Binders;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace AsNum.XFControls {
     /// <summary>
@@ -50,8 +52,8 @@ namespace AsNum.XFControls {
         /// <param name="newValue"></param>
         private static void IsSelectedChanged(BindableObject bindable, object oldValue, object newValue) {
             var radio = (Radio)bindable;
-            var source = (bool)newValue ? Checked : Unchecked;
-            radio.Icon.Source = source; //new BytesImageSource(datas);
+            var source = (bool)newValue ? radio.OnImg : radio.OffImg;
+            radio.Icon.Source = source;
         }
 
         /// <summary>
@@ -173,23 +175,52 @@ namespace AsNum.XFControls {
         }
         #endregion
 
-        /// <summary>
-        /// 按钮的模拟图片,图片必须是嵌入的资源
-        /// </summary>
-        private static readonly ImageSource Checked;
-        private static readonly ImageSource Unchecked;
 
-        static Radio() {
-            Unchecked = ImageSource.FromResource("AsNum.XFControls.Imgs.Radio-Unchecked.png"); //GetImg("AsNum.XFControls.Imgs.Radio-Unchecked.png");
-            Checked = ImageSource.FromResource("AsNum.XFControls.Imgs.Radio-Checked.png"); //GetImg("AsNum.XFControls.Imgs.Radio-Checked.png");
+        #region ImgSource
+        public static readonly BindableProperty OnImgProperty =
+            BindableProperty.Create("OnImg",
+                typeof(ImageSource),
+                typeof(Radio),
+                ImageSource.FromResource("AsNum.XFControls.Imgs.Radio-Checked.png"),
+                propertyChanged: ImgSourceChanged
+                );
+
+        public ImageSource OnImg {
+            get {
+                return (ImageSource)this.GetValue(OnImgProperty);
+            }
+            set {
+                this.SetValue(OnImgProperty, value);
+            }
         }
 
-        //private static byte[] GetImg(string imgFile) {
-        //    var asm = typeof(Radio).GetTypeInfo().Assembly;
-        //    using (var stm = asm.GetManifestResourceStream(imgFile)) {
-        //        return stm.GetBytes();
-        //    }
-        //}
+        public static readonly BindableProperty OffImgProperty =
+            BindableProperty.Create("OffImg",
+                typeof(ImageSource),
+                typeof(Radio),
+                ImageSource.FromResource("AsNum.XFControls.Imgs.Radio-Unchecked.png"),
+        propertyChanged: ImgSourceChanged
+                );
+
+        public ImageSource OffImg {
+            get {
+                return (ImageSource)this.GetValue(OffImgProperty);
+            }
+            set {
+                this.SetValue(OffImgProperty, value);
+            }
+        }
+
+        private static void ImgSourceChanged(BindableObject bindable, object oldValue, object newValue) {
+            var chk = (Radio)bindable;
+            chk.UpdateImageSource(chk.OnImg, chk.OffImg);
+        }
+
+        private void UpdateImageSource(ImageSource on, ImageSource off) {
+            this.Icon.Source = this.IsSelected ? on : off;
+        }
+
+        #endregion
 
 
         private Image Icon;
@@ -199,22 +230,28 @@ namespace AsNum.XFControls {
             var layout = new StackLayout() {
                 Orientation = StackOrientation.Horizontal
             };
-
             this.Content = layout;
 
             this.Icon = new Image() {
-                Source = Unchecked, //new BytesImageSource(Unchecked),
+                Source = this.OffImg,
                 WidthRequest = this.Size,
                 HeightRequest = this.Size
             };
             this.Icon.SetBinding(Image.IsVisibleProperty, new Binding("ShowRadio", source: this));
             layout.Children.Add(this.Icon);
 
-            this.Lbl = new Label();
+            this.Lbl = new Label() {
+                VerticalTextAlignment = TextAlignment.Center,
+                HorizontalTextAlignment = TextAlignment.Center
+            };
             this.Lbl.SetBinding(Label.HorizontalTextAlignmentProperty, new Binding("TextAlignment", source: this));
             this.Lbl.Text = this.Text;
             layout.Children.Add(this.Lbl);
+        }
 
+        internal void SetTap(ICommand cmd) {
+            TapBinder.SetCmd(this.Content, cmd);
+            TapBinder.SetParam(this.Content, this);
         }
     }
 }

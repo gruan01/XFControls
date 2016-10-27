@@ -58,3 +58,13 @@
 </StackLayout>
 </StackLayout>
 ~~~
+
+## Properties:
+Name | Desc | Type | Default Value
+|---|---|---|---|
+ShowRadio | | bool | Horizontal
+SelectedItemControlTemplate | | ControlTemplate |[DefaultRadioButtonSelectedControlTemplate](https://github.com/gruan01/XFControls/blob/master/XFControls/Src/AsNum.XFControls/Templates/DefaultRadioButtonSelectedControlTemplate.xaml)
+UnSelectedItemControlTemplate | | ControlTemplate | [DefaultRadioButtonUnSelectedControlTemplate](https://github.com/gruan01/XFControls/blob/master/XFControls/Src/AsNum.XFControls/Templates/DefaultRadioButtonUnSelectedControlTemplate.xaml)
+Other's please refer [RadioGroupBase](RadioGroupBase.md)
+
+## ISSUE

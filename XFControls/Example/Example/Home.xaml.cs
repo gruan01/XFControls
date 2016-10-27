@@ -31,7 +31,6 @@ namespace Example {
                 "【股市大直播】季报给力！这些股利润惊人"
             };
 
-
         public IEnumerable<TabViewItem> TabViewSource { get; }
             = new List<TabViewItem>() {
                 new TabViewItem() { Glyph = (char)0xe65e, Title = "生鲜果蔬" },
@@ -40,6 +39,13 @@ namespace Example {
                 new TabViewItem() { Glyph = (char)0xe608, Title = "鸡鸭禽蛋" },
                 new TabViewItem() { Glyph = (char)0xe886, Title = "猪牛羊肉" },
                 new TabViewItem() { Glyph = (char)0xe610, Title = "南北小吃" }
+            };
+
+        public IEnumerable<RadioItem> RadioGroupSource { get; }
+            = new List<RadioItem>() {
+                new RadioItem() {ID = 0, Name = "同意" },
+                new RadioItem() {ID = 1, Name="不同意" },
+                new RadioItem() {ID = 2, Name = "中立" }
             };
 
         public Home() {
@@ -56,7 +62,6 @@ namespace Example {
 
         public string Img { get; set; }
     }
-
 
 
     /// <summary>
@@ -85,5 +90,11 @@ namespace Example {
         public void NotifyOfPropertyChange(string propertyName) {
             this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+    }
+
+
+    public class RadioItem {
+        public string Name { get; set; }
+        public int ID { get; set; }
     }
 }

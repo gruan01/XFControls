@@ -25,7 +25,8 @@ namespace AsNum.XFControls {
 
         private static void SelectedItemChanged(BindableObject bindable, object oldValue, object newValue) {
             var rg = (RadioGroupBase)bindable;
-            rg.UpdateSelected();
+            if (!rg.IsInnerChanged)
+                rg.UpdateSelected();
         }
 
         /// <summary>
@@ -175,6 +176,42 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+
+        #region ImgSource
+        public static readonly BindableProperty OnImgProperty =
+            BindableProperty.Create("OnImg",
+                typeof(ImageSource),
+                typeof(RadioGroupBase),
+                ImageSource.FromResource("AsNum.XFControls.Imgs.Radio-Checked.png")
+                );
+
+        public ImageSource OnImg {
+            get {
+                return (ImageSource)this.GetValue(OnImgProperty);
+            }
+            set {
+                this.SetValue(OnImgProperty, value);
+            }
+        }
+
+        public static readonly BindableProperty OffImgProperty =
+            BindableProperty.Create("OffImg",
+                typeof(ImageSource),
+                typeof(RadioGroupBase),
+                ImageSource.FromResource("AsNum.XFControls.Imgs.Radio-Unchecked.png")
+                );
+
+        public ImageSource OffImg {
+            get {
+                return (ImageSource)this.GetValue(OffImgProperty);
+            }
+            set {
+                this.SetValue(OffImgProperty, value);
+            }
+        }
+        #endregion
+
+
         /// <summary>
         /// 内部使用的选中命令
         /// </summary>
@@ -196,6 +233,8 @@ namespace AsNum.XFControls {
         /// <returns></returns>
         protected abstract Layout<View> GetContainer();
 
+        private bool IsInnerChanged = false;
+
         public RadioGroupBase() {
             this.Container = this.GetContainer();
             this.Content = this.Container;
@@ -204,7 +243,10 @@ namespace AsNum.XFControls {
                 if (o == null)
                     return;
 
+                this.IsInnerChanged = true;
+
                 var item = (Radio)o;
+
                 if (this.SelectedRadio != null) {
                     this.SelectedRadio.IsSelected = false;
                     this.SelectedRadio.ControlTemplate = this.UnSelectedItemControlTemplate ?? DefaultControlTemplate;
@@ -215,6 +257,8 @@ namespace AsNum.XFControls {
                 this.SelectedRadio.ControlTemplate = this.SelectedItemControlTemplate ?? DefaultControlTemplate;
 
                 item.IsSelected = true;
+
+                this.IsInnerChanged = false;
             });
 
             this.WrapItemsSource();
@@ -265,21 +309,23 @@ namespace AsNum.XFControls {
                 item.Value = data;
 
                 if (!string.IsNullOrWhiteSpace(this.DisplayPath)) {
-                    //item.Text = Helper.GetProperty<string>(data, this.DisplayPath, "DisplayPath Invalid");
-                    //item.SetBinding(Radio.TextProperty, this.DisplayPath);
                     item.SetBinding(Radio.TextProperty, new Binding(this.DisplayPath, source: data));
                 } else
                     item.Text = data.ToString();
             }
 
-            item.Size = this.RadioSize;
+            //item.Size = this.RadioSize;
+            item.SetBinding(Radio.SizeProperty, new Binding(nameof(RadioSize), source: this));
+            item.SetBinding(Radio.OnImgProperty, new Binding(nameof(OnImg), source: this));
+            item.SetBinding(Radio.OffImgProperty, new Binding(nameof(OffImg), source: this));
 
             if (this.UnSelectedItemControlTemplate != null) {
                 item.ControlTemplate = this.UnSelectedItemControlTemplate;
             }
 
-            TapBinder.SetCmd(item, this.SelectedCmd);
-            TapBinder.SetParam(item, item);
+            //TapBinder.SetCmd(item, this.SelectedCmd);
+            //TapBinder.SetParam(item, item);
+            item.SetTap(this.SelectedCmd);
 
             return item;
         }

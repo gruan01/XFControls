@@ -26,6 +26,8 @@
       <RowDefinition Height="200" />
       <RowDefinition Height="30" />
       <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
+      <RowDefinition Height="30" />
       <RowDefinition />
     </Grid.RowDefinitions>
 
@@ -85,25 +87,31 @@
     <!--/Marquee Example-->
 
 
-
-
-    <!--FontIcon Example-->
-    <!--
-    <ctrls:FontIcon FontFamily="{StaticResource font}" 
-                    Glyph="&#xe626;" 
-                    FontSize="20"
-                    Color="Red"
-                    Grid.Row="2" />
-    -->
-    <!--/FontIcon Example-->
-
+    <!--CheckBox Example-->
     <ctrls:CheckBox Grid.Row="2" 
                     Checked="True" 
                     Text="Just a label"
                     ShowLabel="True"
                     />
+    <!--CheckBox Example-->
+
+    <ctrls:RadioGroup Grid.Row="3" 
+                      ItemsSource="{Binding RadioGroupSource}"
+                      Orientation="Horizontal"
+                      DisplayPath="Name"
+                      OnImg="radio1"
+                      OffImg="radio2"
+                      />
+
+
+    <ctrls:RadioButtonGroup Grid.Row="4" 
+                            ItemsSource="{Binding RadioGroupSource}" 
+                            DisplayPath="Name"
+                            ShowRadio="False"
+                            />
     
-    <ctrls:TabView Grid.Row="3"
+    <!--TabView Example-->
+    <ctrls:TabView Grid.Row="5"
                    ItemsSource="{Binding TabViewSource}"
                    TabHeightRequest="60"
                    TabPosition="Bottom">
@@ -111,6 +119,7 @@
       <ctrls:TabView.TabTemplate>
         <DataTemplate>
           <StackLayout>
+            <!--FontIcon Example-->
             <ctrls:FontIcon Glyph="{Binding Glyph}"
                             FontFamily="{StaticResource font}"
                             FontSize="25"
@@ -126,6 +135,7 @@
                 </DataTrigger>
               </ctrls:FontIcon.Triggers>
             </ctrls:FontIcon>
+            <!--FontIcon Example-->
 
             <Label Text="{Binding Title}"
                    TextColor="Gray"
@@ -155,7 +165,7 @@
       </ctrls:TabView.ItemTemplate>
       
     </ctrls:TabView>
-
+    <!--TabView Example-->
 
 
 
