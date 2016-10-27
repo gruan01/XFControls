@@ -227,9 +227,16 @@ namespace AsNum.XFControls {
         private Label Lbl;
 
         public Radio() {
-            var layout = new StackLayout() {
-                Orientation = StackOrientation.Horizontal
+            //var layout = new StackLayout() {
+            //    Orientation = StackOrientation.Horizontal
+            //};
+            var layout = new Grid() {
+                ColumnDefinitions = new ColumnDefinitionCollection(),
+                HorizontalOptions = LayoutOptions.StartAndExpand,
+                VerticalOptions = LayoutOptions.StartAndExpand
             };
+            layout.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+            layout.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Star });
             this.Content = layout;
 
             this.Icon = new Image() {
@@ -239,14 +246,18 @@ namespace AsNum.XFControls {
             };
             this.Icon.SetBinding(Image.IsVisibleProperty, new Binding("ShowRadio", source: this));
             layout.Children.Add(this.Icon);
+            Grid.SetColumn(this.Icon, 0);
 
             this.Lbl = new Label() {
                 VerticalTextAlignment = TextAlignment.Center,
-                HorizontalTextAlignment = TextAlignment.Center
+                //HorizontalOptions = LayoutOptions.Fill,
+                //HorizontalTextAlignment = TextAlignment.Center,
+                //BackgroundColor = Color.Yellow
             };
             this.Lbl.SetBinding(Label.HorizontalTextAlignmentProperty, new Binding("TextAlignment", source: this));
             this.Lbl.Text = this.Text;
             layout.Children.Add(this.Lbl);
+            Grid.SetColumn(this.Lbl, 1);
         }
 
         internal void SetTap(ICommand cmd) {

@@ -46,9 +46,12 @@ namespace AsNum.XFControls {
         protected override Radio GetRadio(object data) {
             var radio = base.GetRadio(data);
             radio.SetBinding(Radio.ShowRadioProperty, new Binding("ShowRadio", source: this));
-            radio.Content.HorizontalOptions = LayoutOptions.Center;
-            //if (!this.ShowRadio)
-            //    radio.TextAlignment = TextAlignment.Center;
+            radio.Content.HorizontalOptions = LayoutOptions.FillAndExpand;
+            radio.TextAlignment = TextAlignment.Center;
+
+            if (!this.ShowRadio) {
+                ((Grid)radio.Content).ColumnSpacing = 0;
+            }
 
             return radio;
         }

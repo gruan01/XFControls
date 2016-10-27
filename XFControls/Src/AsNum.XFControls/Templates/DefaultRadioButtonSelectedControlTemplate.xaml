@@ -12,28 +12,7 @@
                 StrokeThickness="0.5"
                 HorizontalOptions="Center"
                 >
-
-    <!--在此处嵌套的使用 style 不起作用-->
-    <!--<ctrls:Border.Resources>
-      <ResourceDictionary>
-        <Style TargetType="Label">
-          <Setter Property="TextColor" Value="Red" />
-        </Style>
-      </ResourceDictionary>
-    </ctrls:Border.Resources>-->
-
-    <!--<ctrls:Border.Style>
-      <Style TargetType="Label" CanCascade="True">
-        <Setter Property="TextColor" Value="Red" />
-      </Style>
-    </ctrls:Border.Style>-->
-
-    <!--<ctrls:Border.Style>
-      <Style TargetType="Label" CanCascade="True">
-        <Setter Property="TextColor" Value="Red" />
-      </Style>
-    </ctrls:Border.Style>-->
-
+    
     <ContentPresenter Padding="5">
       <ContentPresenter.Style>
         <Style TargetType="Label">
