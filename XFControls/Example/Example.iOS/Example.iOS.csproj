@@ -119,12 +119,12 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AsNum.XFControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XFControls.1.0.0.3\lib\Xamarin.iOS10\AsNum.XFControls.dll</HintPath>
+    <Reference Include="AsNum.XFControls, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XFControls.1.0.0.5\lib\Xamarin.iOS10\AsNum.XFControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AsNum.XFControls.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XFControls.1.0.0.3\lib\Xamarin.iOS10\AsNum.XFControls.iOS.dll</HintPath>
+    <Reference Include="AsNum.XFControls.iOS, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XFControls.1.0.0.5\lib\Xamarin.iOS10\AsNum.XFControls.iOS.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
