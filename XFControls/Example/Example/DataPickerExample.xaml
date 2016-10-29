@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Example.DataPickerExample"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
+
+
+  <Grid ColumnSpacing="0">
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition />
+      <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+
+    <ctrls:DataPicker Grid.Column="0"
+                      ItemsSource="{Binding Datas}"
+                      DisplayPath="Name"
+                      TextColor="Green"
+                      DividerColor="Green"
+                      x:Name="d1"
+                      />
+
+    <ctrls:DataPicker Grid.Column="1"
+                      ItemsSource="{Binding Path=SelectedItem.Children, Source={x:Reference d1}}"
+                      DisplayPath="Name"
+                      TextColor="Blue"
+                      DividerColor="Blue"
+                      />
+  </Grid>
+
+</ContentPage>

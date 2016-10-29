@@ -60,6 +60,62 @@ namespace AsNum.XFControls {
 
         #endregion
 
+        #region textColor
+        public static readonly BindableProperty TextColorProperty =
+            BindableProperty.Create("TextColor",
+                typeof(Color),
+                typeof(DataPicker),
+                Color.Black
+                );
+
+        public Color TextColor {
+            get {
+                return (Color)this.GetValue(TextColorProperty);
+            }
+            set {
+                this.SetValue(TextColorProperty, value);
+            }
+        }
+
+        #endregion
+
+        #region FontSize
+        public static readonly BindableProperty FontSizeProperty =
+            BindableProperty.Create("FontSize",
+                typeof(float),
+                typeof(DataPicker),
+                15f
+                );
+
+        public float FontSize {
+            get {
+                return (float)this.GetValue(FontSizeProperty);
+            }
+            set {
+                this.SetValue(FontSizeProperty, value);
+            }
+        }
+        #endregion
+
+        #region DividerColor
+        public static readonly BindableProperty DividerColorProperty =
+            BindableProperty.Create(
+                "DividerColor",
+                typeof(Color),
+                typeof(DataPicker),
+                Color.Gray);
+
+
+        public Color DividerColor {
+            get {
+                return (Color)this.GetValue(DividerColorProperty);
+            }
+            set {
+                this.SetValue(DividerColorProperty, value);
+            }
+        }
+        #endregion
+
         #region
         /// <summary>
         /// 显示值的属性路径
@@ -74,7 +130,7 @@ namespace AsNum.XFControls {
         //public Color TextColor { get; set; }
         //public Color DividerColor { get; set; }
         #endregion
-        
+
         /// <summary>
         /// 将数据源转换为可显示文本集合,用于 Render 中的 NativeControl
         /// </summary>
@@ -88,8 +144,7 @@ namespace AsNum.XFControls {
                     foreach (var d in this.ItemsSource) {
                         lst.Add(Helper.GetProperty(d, this.DisplayPath)?.ToString());
                     }
-                }
-                else if (this.ItemsSource != null) {
+                } else if (this.ItemsSource != null) {
                     foreach (var d in this.ItemsSource)
                         lst.Add(d.ToString());
                 }
@@ -106,8 +161,7 @@ namespace AsNum.XFControls {
                 if (this.SelectedItem != null) {
                     var str = Helper.GetProperty(this.SelectedItem, this.DisplayPath)?.ToString();
                     return this.StringValues.IndexOf(str);
-                }
-                else {
+                } else {
                     return -1;
                 }
             }

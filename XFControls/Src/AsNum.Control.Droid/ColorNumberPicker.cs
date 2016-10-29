@@ -1,86 +1,133 @@
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Java.Util.Jar;
 using System;
+using Xamarin.Forms;
+using AView = Android.Views.View;
+using AColor = Android.Graphics.Color;
+using Java.Lang;
+
 
 namespace AsNum.XFControls.Droid {
 
-    /// <summary>
-    /// http://www.netmite.com/android/mydroid/cupcake/frameworks/base/core/java/com/android/internal/widget/NumberPicker.java
-    /// 不能正常使用， 构造函数居然在 AddView / OnViewAdded 后面执行，导致颜色设置无效
-    /// </summary>
-    public class ColorNumberPicker : NumberPicker {
+    ///// <summary>
+    ///// NOT WORK CORRECTLLY
+    ///// BECAUSE ADD VIEW INVOKED BEFORE CONSTRUCTOR
+    ///// AND 
+    ///// </summary>
+    //public class ColorNumberPicker : NumberPicker {
 
-        private Color TextColor { get; }
+    //    public AColor TextColor { get; }
 
-        public ColorNumberPicker(Context ctx, Color textColor, Color dividerColor)
-            : base(ctx) {
+    //    public ColorNumberPicker(Context ctx, AColor txtColor)
+    //        : base(ctx) {
 
-            this.TextColor = textColor;
-            this.setDividerColor(dividerColor);
-        }
+    //        this.TextColor = txtColor;
 
-        //public override void AddView(View child) {
-        //    base.AddView(child);
-        //    this.UpdateColor(child);
-        //}
+    //        /*
+    //         * Notice : Because NumberPicker's AddView invoke bofore this constructor
+    //         * So, TextColor can't apply
+    //         */
 
-        //public override void AddView(View child, int index) {
-        //    base.AddView(child, index);
-        //    this.UpdateColor(child);
-        //}
+    //        this.Update();
+    //        this.SetDividerColor(txtColor);
 
-        //public override void AddView(View child, int index, ViewGroup.LayoutParams @params) {
-        //    base.AddView(child, index, @params);
-        //    this.UpdateColor(child);
-        //}
+    //        this.ChildViewAdded += ColorNumberPicker_ChildViewAdded;
+    //    }
 
-        //public override void AddView(View child, int width, int height) {
-        //    base.AddView(child, width, height);
-        //    this.UpdateColor(child);
-        //}
+    //    private void ColorNumberPicker_ChildViewAdded(object sender, ChildViewAddedEventArgs e) {
+    //        System.Diagnostics.Debug.WriteLine("22222");
+    //    }
 
-        //public override void AddView(View child, ViewGroup.LayoutParams @params) {
-        //    base.AddView(child, @params);
+    //    public ColorNumberPicker(Context ctx, IAttributeSet attrs)
+    //        : base(ctx, attrs) {
 
-        //    this.UpdateColor(child);
-        //}
+    //    }
 
-        //public override void OnViewAdded(View child) {
-        //    base.OnViewAdded(child);
+    //    public ColorNumberPicker(Context ctx, IAttributeSet attrs, int defStyleAttr)
+    //        : base(ctx, attrs, defStyleAttr) {
+    //    }
 
-        //    this.UpdateColor(child);
-        //}
+    //    // AddView 先于构造函数运行，无法获取到 TextColor
+    //    public override void AddView(AView child) {
+    //        base.AddView(child);
 
-        private void UpdateColor(View v) {
-            if (this.TextColor == null)
-                return;
+    //        this.UpdateView(child);
+    //        System.Diagnostics.Debug.WriteLine("1");
+    //    }
 
-            if (v is EditText) {
-                var edt = (EditText)v;
-                edt.SetTextColor(this.TextColor);
-                edt.TextSize = 25;
-            }
-        }
+    //    public override void AddView(AView child, int index, ViewGroup.LayoutParams @params) {
+    //        base.AddView(child, index, @params);
 
-        public void setDividerColor(Color color) {
-            if (color == null)
-                return;
+    //        this.UpdateView(child);
+    //        System.Diagnostics.Debug.WriteLine("A");
+    //    }
 
-            try {
-                var fs = base.Class.GetDeclaredFields();
-                var f = base.Class.GetDeclaredField("mSelectionDivider");
-                f.Accessible = true;
+    //    public override void AddView(AView child, int index) {
+    //        base.AddView(child, index);
+    //        System.Diagnostics.Debug.WriteLine("B");
+    //    }
 
-                var d = (Drawable)f.Get(this);
-                d.SetColorFilter(Color.Green, PorterDuff.Mode.SrcAtop);
-                d.InvalidateSelf();
-                this.PostInvalidate(); // Drawable is dirty
-            } catch (Exception) {
+    //    public override void AddView(AView child, int width, int height) {
+    //        base.AddView(child, width, height);
+    //        System.Diagnostics.Debug.WriteLine("C");
+    //    }
 
-            }
-        }
-    }
+    //    public override void AddView(AView child, ViewGroup.LayoutParams @params) {
+    //        base.AddView(child, @params);
+    //        System.Diagnostics.Debug.WriteLine("D");
+    //    }
+
+    //    public override void OnViewAdded(AView child) {
+    //        base.OnViewAdded(child);
+    //        System.Diagnostics.Debug.WriteLine("E");
+    //    }
+
+    //    protected override bool AddViewInLayout(AView child, int index, ViewGroup.LayoutParams @params) {
+    //        System.Diagnostics.Debug.WriteLine("F");
+    //        return base.AddViewInLayout(child, index, @params);
+    //    }
+
+    //    protected override bool AddViewInLayout(AView child, int index, ViewGroup.LayoutParams @params, bool preventRequestLayout) {
+    //        System.Diagnostics.Debug.WriteLine("G");
+    //        return base.AddViewInLayout(child, index, @params, preventRequestLayout);
+    //    }
+
+    //    private void Update() {
+    //        for (var i = 0; i < this.ChildCount; i++) {
+    //            var c = this.GetChildAt(i);
+    //            this.UpdateView(c);
+    //        }
+    //    }
+
+    //    public void UpdateView(AView view) {
+    //        if (view is EditText) {
+    //            ((EditText)view).SetTextColor(this.TextColor);
+    //        }
+    //    }
+
+
+    //    public void SetDividerColor(AColor color) {
+    //        if (color == null)
+    //            return;
+
+    //        try {
+    //            var fs = base.Class.GetDeclaredFields();
+    //            var f = base.Class.GetDeclaredField("mSelectionDivider");
+    //            f.Accessible = true;
+
+    //            var d = (Drawable)f.Get(this);
+    //            d.SetColorFilter(color, PorterDuff.Mode.SrcAtop);
+    //            d.InvalidateSelf();
+    //            this.PostInvalidate(); // Drawable is dirty
+    //        } catch (Exception) {
+
+    //        }
+    //    }
+
+    //}
 }
