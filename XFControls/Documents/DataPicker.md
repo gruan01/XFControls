@@ -33,6 +33,9 @@ ItemsSource | Data Sources | IEnumerable |
 SelectedItem | Choiced Item | object | null
 DisplayPath | Display property's name | string
 SelectedIndex | readonly | int 
+TextColor | | Color | Black
+FontSize | | float | 15
+DividerColorProperty | | Color | Gray
 
 ## ISSUE
 Can't dynamic set font's color

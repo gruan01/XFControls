@@ -12,11 +12,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\Border.md = Documents\Border.md
 		Documents\CheckBox.md = Documents\CheckBox.md
 		Documents\CircleBox.md = Documents\CircleBox.md
+		Documents\DataPicker.md = Documents\DataPicker.md
 		Documents\Flip.md = Documents\Flip.md
 		FontIcon.md = FontIcon.md
 		Documents\FontIcon.md = Documents\FontIcon.md
 		Documents\Index.md = Documents\Index.md
 		Documents\Marquee.md = Documents\Marquee.md
+		Documents\Radio.md = Documents\Radio.md
+		Documents\RadioButtonGroup.md = Documents\RadioButtonGroup.md
+		Documents\RadioGroup.md = Documents\RadioGroup.md
+		Documents\RadioGroupBase.md = Documents\RadioGroupBase.md
+		Documents\Stepper.md = Documents\Stepper.md
 		Documents\TabView.md = Documents\TabView.md
 	EndProjectSection
 EndProject

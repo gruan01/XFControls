@@ -7,6 +7,15 @@
 * XFControls 只依赖于 Xamarin.Forms
 * XFControls only dependency Xamarin.Forms
 * Nuget : Install-Package XFControls 
+	* iOS Project Please insert the following code before **global::Xamarin.Forms.Forms.Init();** at file AppDelegate.cs
+	~~~
+	AsNumAssemblyHelper.HoldAssembly();
+	~~~
+
+	* Android Project also please insert the following code before **Xamarin.Forms.Forms.Init(this, bundle)** at file MainActivity.cs;
+	~~~
+	AsNumAssemblyHelper.HoldAssembly();
+	~~~
 
 ## [Documents](https://github.com/gruan01/XFControls/blob/master/XFControls/Documents/index.md)
 

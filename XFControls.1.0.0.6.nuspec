@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>XFControls</id>
+        <version>1.0.0.6</version>
+        <title>Xamarin.Forms Controls set</title>
+        <authors>xling</authors>
+        <owners>asnum</owners>
+        <projectUrl>https://github.com/gruan01/XFControls</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <developmentDependency>true</developmentDependency>
+        <description>XFControls is a set of Xamarin.Forms' control.
+Include Border / CircleBox / TabView / Flip / FontIcon / CheckBox / Radio / RaidoGroup / RaidoButtonGroup / Marquee /  RatingBar / Stepper / UniformGrid / WrapLayout / Repeater etc...</description>
+        <releaseNotes>#1, DataPicker support TextColor / DividerColor &amp; FontSize
+#2, Assembly holder for linker.
+ios project Please insert the following code before global::Xamarin.Forms.Forms.Init(); at file AppDelegate.cs
+ AsNumAssemblyHelper.HoldAssembly();
+
+Android Project also please insert the following code before Xamarin.Forms.Forms.Init(this, bundle);
+ AsNumAssemblyHelper.HoldAssembly();</releaseNotes>
+        <copyright />
+        <tags>Xamarin Forms controls</tags>
+        <dependencies>
+            <dependency id="Xamarin.Forms" version="2.0.0.6480" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="XFControls\Src\AsNum.Control.Droid\bin\Release\AsNum.XFControls.dll" target="lib\MonoAndroid\AsNum.XFControls.dll" />
+        <file src="XFControls\Src\AsNum.Control.Droid\bin\Release\AsNum.XFControls.Droid.dll" target="lib\MonoAndroid\AsNum.XFControls.Droid.dll" />
+        <file src="XFControls\Src\AsNum.Control.Droid\bin\Release\AsNum.XFControls.Droid.XML" target="lib\MonoAndroid\AsNum.XFControls.Droid.XML" />
+        <file src="XFControls\Src\AsNum.Control.Droid\bin\Release\AsNum.XFControls.xml" target="lib\MonoAndroid\AsNum.XFControls.xml" />
+        <file src="XFControls\Src\AsNum.XFControls.iOS\bin\Release\AsNum.XFControls.dll" target="lib\MonoTouch\AsNum.XFControls.dll" />
+        <file src="XFControls\Src\AsNum.XFControls.iOS\bin\Release\AsNum.XFControls.iOS.dll" target="lib\MonoTouch\AsNum.XFControls.iOS.dll" />
+        <file src="XFControls\Src\AsNum.XFControls.iOS\bin\Release\AsNum.XFControls.iOS.XML" target="lib\MonoTouch\AsNum.XFControls.iOS.XML" />
+        <file src="XFControls\Src\AsNum.XFControls.iOS\bin\Release\AsNum.XFControls.xml" target="lib\MonoTouch\AsNum.XFControls.xml" />
+        <file src="XFControls\Src\AsNum.XFControls\bin\Release\AsNum.XFControls.dll" target="lib\portable-net45+win8+wp8+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10\AsNum.XFControls.dll" />
+        <file src="XFControls\Src\AsNum.XFControls\bin\Release\AsNum.XFControls.XML" target="lib\portable-net45+win8+wp8+wpa81+MonoAndroid10+Xamarin.iOS10+MonoTouch10\AsNum.XFControls.XML" />
+        <file src="XFControls\Src\AsNum.XFControls.iOS\bin\Release\AsNum.XFControls.dll" target="lib\Xamarin.iOS10\AsNum.XFControls.dll" />
+        <file src="XFControls\Src\AsNum.XFControls.iOS\bin\Release\AsNum.XFControls.iOS.dll" target="lib\Xamarin.iOS10\AsNum.XFControls.iOS.dll" />
+        <file src="XFControls\Src\AsNum.XFControls.iOS\bin\Release\AsNum.XFControls.iOS.XML" target="lib\Xamarin.iOS10\AsNum.XFControls.iOS.XML" />
+        <file src="XFControls\Src\AsNum.XFControls.iOS\bin\Release\AsNum.XFControls.xml" target="lib\Xamarin.iOS10\AsNum.XFControls.xml" />
+    </files>
+</package>
