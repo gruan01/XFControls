@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using AsNum.XFControls.iOS;
 using Foundation;
 using UIKit;
 
@@ -20,6 +20,9 @@ namespace Example.iOS {
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options) {
             global::Xamarin.Forms.Forms.Init();
+
+			AsNumAssemblyHelper.HoldAssembly();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);

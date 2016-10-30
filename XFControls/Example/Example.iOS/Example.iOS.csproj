@@ -119,14 +119,6 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AsNum.XFControls, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XFControls.1.0.0.5\lib\Xamarin.iOS10\AsNum.XFControls.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="AsNum.XFControls.iOS, Version=1.0.0.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XFControls.1.0.0.5\lib\Xamarin.iOS10\AsNum.XFControls.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -150,8 +142,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Example\Example.csproj">
-      <Project>{dcdb7fe7-5bc3-4941-b70a-aba8077b1a6e}</Project>
+      <Project>{A6F3639E-F455-4882-9225-87602B537500}</Project>
       <Name>Example</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\AsNum.XFControls.iOS\AsNum.XFControls.iOS.csproj">
+      <Project>{1E95F6AA-4768-4EB5-A363-2773BAEE0178}</Project>
+      <Name>AsNum.XFControls.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\AsNum.XFControls\AsNum.XFControls.csproj">
+      <Project>{09EE72BC-022B-4C66-B805-706B9B90332D}</Project>
+      <Name>AsNum.XFControls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
