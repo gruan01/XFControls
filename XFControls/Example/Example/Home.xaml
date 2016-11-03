@@ -11,11 +11,13 @@
       <!-- 自定义字体，请参考： https://blog.verslu.is/xamarin/xamarin-forms-xamarin/using-custom-fonts-on-ios-and-android-with-xamarin-forms/ -->
       <!--Put your font file to
       Android : Assets/Fonts as AndroidAsset
-      iOS : Resources/Fonts as BundleResource-->
+      iOS : Resources/Fonts as BundleResource
+      UWP : Assets/Fonts, notice uwp not support woff font formart.
+      -->
       <OnPlatform x:TypeArguments="x:String"
                   Android="Fonts/iconfont.woff"
                   iOS="iconfont"
-                  WinPhone="Fonts/iconfont.woff"
+                  WinPhone="Fonts/iconfont.ttf"
                   x:Key="font" />
     </ResourceDictionary>
 
@@ -99,8 +101,8 @@
                       ItemsSource="{Binding RadioGroupSource}"
                       Orientation="Horizontal"
                       DisplayPath="Name"
-                      OnImg="radio1"
-                      OffImg="radio2"
+                      OnImg="radio1.png"
+                      OffImg="radio2.png"
                       />
 
 

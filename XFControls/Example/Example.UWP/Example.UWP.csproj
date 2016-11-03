@@ -90,6 +90,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\Fonts\iconfont.woff" />
+    <Content Include="Assets\Fonts\iconfont.ttf" />
+    <Content Include="radio1.png" />
+    <Content Include="radio2.png" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -128,11 +132,20 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Src\AsNum.XFControls.UWP\AsNum.XFControls.UWP.csproj">
+      <Project>{d344ab7f-cefc-4ac7-b842-7017ccf8c2c3}</Project>
+      <Name>AsNum.XFControls.UWP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Src\AsNum.XFControls\AsNum.XFControls.csproj">
+      <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
+      <Name>AsNum.XFControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Example\Example.csproj">
       <Project>{dcdb7fe7-5bc3-4941-b70a-aba8077b1a6e}</Project>
       <Name>Example</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
