@@ -22,6 +22,7 @@ namespace AsNum.XFControls.UWP {
             ctl.ItemsSource = this.Element.ItemsSource;
             ctl.FontSize = this.Element.FontSize;
             ctl.TextColor = this.Element.TextColor.ToMediaColor();
+            ctl.DividerColor = this.Element.DividerColor.ToMediaColor();
             this.SetNativeControl(ctl);
         }
 

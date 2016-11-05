@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AsNum.XFControls.UWP">
 
+    <local:Color2BrushConverter x:Key="c2b" />    
+    
     <Style TargetType="local:DataPicker">
         <Setter Property="Height" Value="150" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -24,10 +26,10 @@
                                 <ItemsPresenter Grid.Row="1" />
                             </Grid>
                         </ScrollViewer>
-                        <Border BorderBrush="{TemplateBinding DividerColor}" 
+                        <Border BorderBrush="{Binding DividerColor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource c2b}}" 
                                             BorderThickness="0,1,0,1" 
                                             VerticalAlignment="Center"
-                                            Height="40" />
+                                            Height="{Binding RowHeight,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                     </Grid>
 
                 </ControlTemplate>
@@ -44,27 +46,6 @@
                                    />
                     </Grid>
                 </DataTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-
-
-
-
-
-
-    <Style TargetType="local:Control4">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:Control4">
-                    <Grid>
-                        <TextBlock x:Name="txt" 
-                                   Text="{TemplateBinding Text}"
-                                   Foreground="{TemplateBinding TextColor}"
-                                   />
-                    </Grid>
-                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

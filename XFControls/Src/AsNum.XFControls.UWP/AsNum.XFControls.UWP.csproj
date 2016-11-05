@@ -109,7 +109,7 @@
   <ItemGroup>
     <Compile Include="BorderRender.cs" />
     <Compile Include="CircleBoxRender.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Color2BrushConverter.cs" />
     <Compile Include="DataPicker.cs" />
     <Compile Include="DataPickerRender.cs" />
     <Compile Include="FlipRender.cs" />
