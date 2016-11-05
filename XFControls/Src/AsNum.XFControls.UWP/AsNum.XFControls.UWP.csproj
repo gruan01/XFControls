@@ -109,6 +109,9 @@
   <ItemGroup>
     <Compile Include="BorderRender.cs" />
     <Compile Include="CircleBoxRender.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="DataPicker.cs" />
+    <Compile Include="DataPickerRender.cs" />
     <Compile Include="FlipRender.cs" />
     <Compile Include="FontIconRender.cs" />
     <Compile Include="Helper.cs" />
@@ -120,6 +123,13 @@
       <Project>{09ee72bc-022b-4c66-b805-706b9b90332d}</Project>
       <Name>AsNum.XFControls</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
