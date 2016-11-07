@@ -22,6 +22,7 @@
                       TextColor="Green"
                       DividerColor="Green"
                       x:Name="d1"
+                      BackgroundColor="Yellow"
                       />
 
     <ctrls:DataPicker Grid.Column="1"

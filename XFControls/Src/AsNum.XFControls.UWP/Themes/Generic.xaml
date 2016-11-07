@@ -3,12 +3,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:AsNum.XFControls.UWP">
 
-    <local:Color2BrushConverter x:Key="c2b" />    
-    
+    <local:Color2BrushConverter x:Key="c2b" />
+
     <Style TargetType="local:DataPicker">
         <Setter Property="Height" Value="150" />
         <Setter Property="VerticalAlignment" Value="Center" />
-        <!--<Setter Property="DividerColor" Value="Gray" />-->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:DataPicker">
@@ -19,32 +18,35 @@
                                         VerticalScrollBarVisibility="Hidden">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="50" x:Name="r1" />
+                                    <RowDefinition x:Name="r1" />
                                     <RowDefinition Height="auto" />
-                                    <RowDefinition Height="50" x:Name="r3" />
+                                    <RowDefinition x:Name="r3" />
                                 </Grid.RowDefinitions>
                                 <ItemsPresenter Grid.Row="1" />
                             </Grid>
                         </ScrollViewer>
-                        <Border BorderBrush="{Binding DividerColor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource c2b}}" 
-                                            BorderThickness="0,1,0,1" 
-                                            VerticalAlignment="Center"
-                                            Height="{Binding RowHeight,RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                        <Border x:Name="border" 
+                                BorderBrush="{Binding DividerColor, RelativeSource={RelativeSource Mode=TemplatedParent}, Converter={StaticResource c2b}}" 
+                                BorderThickness="0,1,0,1" 
+                                VerticalAlignment="Center"
+                                Height="{TemplateBinding RowHeight}" />
+                        <!--TemplateBinding Property's type 
+                                                        must same as 
+                                                        DependencyProperty's type
+                                                    -->
                     </Grid>
 
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
         <Setter Property="ItemTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <Grid Height="40">
-                        <TextBlock Text="{Binding}"
+                    <TextBlock Text="{Binding}"
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Center"
-                                   Foreground="Red"
                                    />
-                    </Grid>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

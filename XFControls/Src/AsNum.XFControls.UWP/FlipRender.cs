@@ -13,6 +13,9 @@ using Xamarin.Forms.Platform.UWP;
 namespace AsNum.XFControls.UWP {
     public class FlipRender : ViewRenderer<Flip, FlipView> {
 
+
+        //https://developer.microsoft.com/en-us/windows/uwp-community-toolkit/controls/rotatortile
+
         protected override void OnElementChanged(ElementChangedEventArgs<Flip> e) {
             if (e.NewElement == null)
                 return;
