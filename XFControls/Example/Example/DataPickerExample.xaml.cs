@@ -20,8 +20,12 @@ namespace Example {
             new DataPickerItem() { ID = 1, Name= "Antarctica"}
         };
 
+		public DataPickerItem Selected { get; set; }
+
         public DataPickerExample() {
             InitializeComponent();
+
+			this.Selected = this.Datas.ElementAt(1);
 
             this.BindingContext = this;
         }

@@ -22,26 +22,40 @@ namespace AsNum.XFControls.iOS {
                 picker.ShowSelectionIndicator = true;
                 this.SetNativeControl(picker);
                 this.UpdatePicker();
+				this.UpdatePickerSelectedItem();
             }
         }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) {
             base.OnElementPropertyChanged(sender, e);
 
-            if (e.PropertyName.Equals(DataPicker.ItemsSourceProperty.PropertyName)) {
-                this.UpdatePicker();
-            }
-            else if (e.PropertyName.Equals(DataPicker.FontSizeProperty.PropertyName) ||
-                   e.PropertyName.Equals(DataPicker.TextColorProperty.PropertyName)) {
-                // todo how ?
-            }
-            else if (e.PropertyName.Equals(DataPicker.DividerColorProperty.PropertyName)) {
-                // todo 
-            }
+			if (e.PropertyName.Equals(DataPicker.ItemsSourceProperty.PropertyName))
+			{
+				this.UpdatePicker();
+			}
+			else if (e.PropertyName.Equals(DataPicker.FontSizeProperty.PropertyName) ||
+				   e.PropertyName.Equals(DataPicker.TextColorProperty.PropertyName))
+			{
+				// todo how ?
+			}
+			else if (e.PropertyName.Equals(DataPicker.DividerColorProperty.PropertyName))
+			{
+				// todo 
+			}
+			else if (e.PropertyName.Equals(DataPicker.SelectedItemProperty.PropertyName))
+			{
+				this.UpdatePickerSelectedItem();
+			}
         }
 
         public void UpdatePicker() {
-            if (this.Element.ItemsSource != null) {
+
+				if (this.Control.Model != null)
+				{
+					this.Control.Model.Dispose();
+					this.Control.Model = null;
+				}
+
                 var model = new DataPickerModel(
                     this.Element.StringValues,
                     this.Element.TextColor.ToUIColor(),
@@ -50,13 +64,8 @@ namespace AsNum.XFControls.iOS {
                     );
                 model.PickerChanged += Model_PickerChanged;
                 this.Control.Model = model;
-
-                if (this.Element.SelectedIndex >= 0)
-                    model.Selected(this.Control, this.Element.SelectedIndex, 0);
-                else
-                    model.Selected(this.Control, 0, 0);
-            }
         }
+
 
         private void Model_PickerChanged(object sender, PickerChangedEventArgs e) {
             this.UpdateSelectedItem(e.SelectedIndex);
@@ -65,6 +74,15 @@ namespace AsNum.XFControls.iOS {
         private void UpdateSelectedItem(int idx) {
             this.Element.SelectedItem = this.Element.ItemsSource.Cast<object>().ElementAt(idx);
         }
+
+		private void UpdatePickerSelectedItem()
+		{
+			var idx = this.Element.SelectedIndex;
+			if (idx != -1)
+			{
+				this.Control.Select(idx, 0, true);
+			}
+		}
     }
 
     public class DataPickerModel : UIPickerViewModel {
