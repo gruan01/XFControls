@@ -7,10 +7,6 @@
 
 
   <Grid ColumnSpacing="0">
-    <Grid.RowDefinitions>
-      <RowDefinition />
-      <RowDefinition />
-    </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition />
       <ColumnDefinition />
@@ -22,7 +18,6 @@
                       TextColor="Green"
                       DividerColor="Green"
                       x:Name="d1"
-                      BackgroundColor="Yellow"
                       />
 
     <ctrls:DataPicker Grid.Column="1"

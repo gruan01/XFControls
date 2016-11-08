@@ -6,7 +6,6 @@
     <local:Color2BrushConverter x:Key="c2b" />
 
     <Style TargetType="local:DataPicker">
-        <Setter Property="Height" Value="150" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Template">
             <Setter.Value>

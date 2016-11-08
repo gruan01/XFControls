@@ -18,6 +18,8 @@ namespace AsNum.XFControls.UWP {
     [TemplatePart(Name = "border", Type = typeof(WC.Border))]
     public class DataPicker : WC.ItemsControl {
 
+        public event EventHandler<SelectedChangedEventArgs> SelectedChanged;
+
         #region DividerColor
         public static readonly DependencyProperty DividerColorProperty =
             DependencyProperty.Register(nameof(DividerColor),
@@ -84,22 +86,61 @@ namespace AsNum.XFControls.UWP {
 
         #endregion
 
+
+        #region SelectedIndex
+        public static readonly DependencyProperty SelectedIndexProperty =
+            DependencyProperty.Register(nameof(SelectedIndex),
+                typeof(int),
+                typeof(DataPicker),
+                PropertyMetadata.Create(-1, SelectedIndexChanged)
+                );
+
+
+        public int SelectedIndex {
+            get {
+                return (int)this.GetValue(SelectedIndexProperty);
+            }
+            set {
+                this.SetValue(SelectedIndexProperty, value);
+            }
+        }
+
+        private static void SelectedIndexChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
+            var dp = (DataPicker)d;
+            if (dp.isManual)
+                return;
+
+            dp.ScheduleUpdatePosition((int)e.NewValue);
+        }
+        #endregion
+
+
         private WC.ScrollViewer sc;
         private WC.RowDefinition r1, r3;
         private WC.Border border;
 
         private SolidColorBrush TextBrush;
 
-        private double MARGIN = 0;
-
         public DataPicker() {
             this.DefaultStyleKey = typeof(DataPicker);
 
-            this.FontSize = 15;
-
             this.TextBrush = new SolidColorBrush(this.TextColor);
+            this.RegisterPropertyChangedCallback(FontSizeProperty, FontSizeChanged);
+            this.RegisterPropertyChangedCallback(ItemsSourceProperty, ItemsSourceChanged);
         }
 
+        private void ItemsSourceChanged(DependencyObject sender, DependencyProperty dp) {
+            this.SelectedIndex = 0;
+            this.ScheduleUpdatePosition(0);
+            if (this.SelectedChanged != null)
+                this.SelectedChanged.Invoke(this, new SelectedChangedEventArgs() {
+                    SelectedIndex = 0
+                });
+        }
+
+        private void FontSizeChanged(DependencyObject sender, DependencyProperty dp) {
+
+        }
 
         protected override void OnApplyTemplate() {
             base.OnApplyTemplate();
@@ -112,14 +153,74 @@ namespace AsNum.XFControls.UWP {
             sc.ViewChanged += Sc_ViewChanged;
         }
 
-        private void Sc_ViewChanged(object sender, WC.ScrollViewerViewChangedEventArgs e) {
-            var gt = border.TransformToVisual(this);
-            var bounds = gt.TransformBounds(new Rect(0, 0, this.ActualWidth, this.RowHeight));
-            var elements = VisualTreeHelper.FindElementsInHostCoordinates(bounds, this.ItemsPanelRoot, true);
-            var c = elements.Count();
+        private bool isInnerChange = false;
+        private bool isManual = false;
+        private async void Sc_ViewChanged(object sender, WC.ScrollViewerViewChangedEventArgs e) {
+            if (e.IsIntermediate || isInnerChange)
+                return;
+
+            var borderRange = border.TransformToVisual(this).TransformBounds(new Rect(0, 0, border.ActualWidth, border.ActualHeight));
+
+            //foreach (FrameworkElement c in this.ItemsPanelRoot.Children) {
+            for (var i = 0; i < this.ItemsPanelRoot.Children.Count; i++) {
+                var c = (FrameworkElement)this.ItemsPanelRoot.Children[i];
+
+                var childCenterPoint = c.TransformToVisual(this).TransformPoint(new Point(c.ActualWidth / 2, c.ActualHeight / 2));
+
+                if (borderRange.Contains(childCenterPoint)) {
+                    var childTopPoint = c.TransformToVisual(this).TransformPoint(new Point(0, 0));
+                    var offsetY = (sc.VerticalOffset + childTopPoint.Y - borderRange.Y);
+
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                        this.isInnerChange = true;
+                        sc.ChangeView(null, offsetY, null);
+                    });
+
+                    if (this.SelectedChanged != null) {
+                        this.isManual = true;
+                        this.SelectedIndex = i;
+                        this.SelectedChanged.Invoke(this, new SelectedChangedEventArgs() {
+                            SelectedIndex = i
+                        });
+                    }
+
+                    break;
+                }
+            }
+
+            this.isManual = false;
+            this.isInnerChange = false;
         }
 
 
+        private void ScheduleUpdatePosition(int idx) {
+            Task.Delay(100).ContinueWith(async t => {
+                await this.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                    this.UpdatePosition(idx);
+                });
+            });
+        }
+
+        private async void UpdatePosition(int idx) {
+            if (idx < 0)
+                idx = 0;
+
+            if (this.ItemsPanelRoot == null || idx >= this.ItemsPanelRoot.Children.Count)
+                return;
+
+
+            var borderRange = border.TransformToVisual(this).TransformBounds(new Rect(0, 0, border.ActualWidth, border.ActualHeight));
+            var c = (FrameworkElement)this.ItemsPanelRoot.Children[idx];
+            var childTopPoint = c.TransformToVisual(this).TransformPoint(new Point(0, 0));
+            var offsetY = (sc.VerticalOffset + childTopPoint.Y - borderRange.Y);
+
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => {
+                this.isInnerChange = true;
+                sc.ChangeView(null, offsetY, null);
+            });
+
+            this.isInnerChange = false;
+        }
 
         protected override Size MeasureOverride(Size availableSize) {
             base.MeasureOverride(availableSize);
@@ -145,5 +246,14 @@ namespace AsNum.XFControls.UWP {
             ele.Foreground = this.TextBrush;
         }
 
+
+
+        public class SelectedChangedEventArgs : EventArgs {
+
+            public int SelectedIndex {
+                get; set;
+            }
+
+        }
     }
 }
