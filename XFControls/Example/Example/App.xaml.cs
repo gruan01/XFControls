@@ -10,7 +10,7 @@ namespace Example {
         public App() {
             InitializeComponent();
 
-			MainPage = new DataPickerExample();// new Home();
+			MainPage = new FlipExample();// new Home();
         }
 
         protected override void OnStart() {
