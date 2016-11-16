@@ -30,7 +30,7 @@ namespace AsNum.XFControls.iOS
 				picker.ShowSelectionIndicator = true;
 				this.SetNativeControl(picker);
 				this.InitPicker();
-				this.UpdatePickerSelectedItem();
+				this.UpdatePickerSelected(this.Element.SelectedIndex);
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace AsNum.XFControls.iOS
 
 			if (e.PropertyName.Equals(DataPicker.ItemsSourceProperty.PropertyName))
 			{
-				this.UpdateSource();
+				this.UpdateDatas();
 			}
 			else if (e.PropertyName.Equals(DataPicker.FontSizeProperty.PropertyName) ||
 				     e.PropertyName.Equals(DataPicker.TextColorProperty.PropertyName) ||
@@ -50,7 +50,7 @@ namespace AsNum.XFControls.iOS
 			}
 			else if (e.PropertyName.Equals(DataPicker.SelectedItemProperty.PropertyName))
 			{
-				this.UpdatePickerSelectedItem();
+				this.UpdatePickerSelected(this.Element.SelectedIndex);
 			}
 		}
 
@@ -66,14 +66,16 @@ namespace AsNum.XFControls.iOS
 						);
 				this.Model.PickerChanged += Model_PickerChanged;
 				this.Control.Model = this.Model;
+				this.UpdateSelectedItem(this.Element.SelectedIndex);
 			}
 		}
 
-		private void UpdateSource()
+		private void UpdateDatas()
 		{
 			this.Model.SetValues(this.Element.StringValues);
 			this.Control.ReloadAllComponents();
-			this.Element.SelectedItem = null;
+			this.UpdatePickerSelected(this.Element.SelectedIndex);
+			this.UpdateSelectedItem(this.Element.SelectedIndex);
 		}
 
 		private void UpdateApperance()
@@ -91,12 +93,24 @@ namespace AsNum.XFControls.iOS
 
 		private void UpdateSelectedItem(int idx)
 		{
-			this.Element.SelectedItem = this.Element.ItemsSource.Cast<object>().ElementAt(idx);
+
+			if (this.Element.ItemsSource != null)
+			{
+				var source = this.Element.ItemsSource.Cast<object>();
+				if (idx < 0)
+					idx = 0;
+				if (idx > source.Count())
+					idx = 0;
+				
+				this.Element.SelectedItem = source.ElementAt(idx);
+			}
+			else {
+				this.Element.SelectedItem = null;
+			}
 		}
 
-		private void UpdatePickerSelectedItem()
+		private void UpdatePickerSelected(int idx)
 		{
-			var idx = this.Element.SelectedIndex;
 			if (idx != -1)
 			{
 				this.Control.Select(idx, 0, true);
