@@ -101,11 +101,8 @@ namespace AsNum.XFControls.Droid {
         /// <summary>
         /// http://stackoverflow.com/questions/22962075/change-the-text-color-of-numberpicker
         /// </summary>
-        /// <param name="numberPicker"></param>
         /// <param name="txtColor"></param>
-        /// <param name="complexUnitType"></param>
         /// <param name="textSize"></param>
-        /// <param name="style"></param>
         /// <returns></returns>
         private void UpdateApperance(
             Android.Graphics.Color txtColor,

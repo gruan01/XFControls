@@ -9,6 +9,9 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using WC = Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.System.Profile;
+using Windows.UI.Xaml.Input;
+using Windows.Devices.Input;
 
 namespace AsNum.XFControls.UWP {
 
@@ -151,6 +154,20 @@ namespace AsNum.XFControls.UWP {
             border = (WC.Border)this.GetTemplateChild("border");
 
             sc.ViewChanged += Sc_ViewChanged;
+
+            this.PointerEntered += DataPicker_PointerEntered;
+            this.PointerExited += DataPicker_PointerExited;
+        }
+
+        private void DataPicker_PointerExited(object sender, PointerRoutedEventArgs e) {
+            this.sc.VerticalScrollBarVisibility = WC.ScrollBarVisibility.Hidden;
+        }
+
+        private void DataPicker_PointerEntered(object sender, PointerRoutedEventArgs e) {
+            this.sc.VerticalScrollBarVisibility =
+                e.Pointer.PointerDeviceType == PointerDeviceType.Mouse
+                    ? WC.ScrollBarVisibility.Auto
+                    : WC.ScrollBarVisibility.Hidden;
         }
 
         private bool isInnerChange = false;
@@ -245,8 +262,6 @@ namespace AsNum.XFControls.UWP {
             ele.FontSize = this.FontSize;
             ele.Foreground = this.TextBrush;
         }
-
-
 
         public class SelectedChangedEventArgs : EventArgs {
 

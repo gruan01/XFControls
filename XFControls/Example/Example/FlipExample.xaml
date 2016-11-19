@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Example.FlipExample"
+             xmlns:ctrls="clr-namespace:AsNum.XFControls;assembly=AsNum.XFControls"
+             >
+
+  <!--Flip Example-->
+  <ctrls:Flip Grid.Row="0"
+              AutoPlay="False"
+              Interval="3000"
+              ItemsSource="{Binding FlipSource}"
+      >
+
+    <ctrls:Flip.ItemTemplate>
+      <DataTemplate>
+        <Grid>
+          <Image Source="{Binding Img}" Aspect="AspectFill" />
+          <Label Text="{Binding Desc}"
+                 HorizontalTextAlignment="Start"
+                 VerticalTextAlignment="End"
+                 TextColor="White"
+                 Margin="10"
+                   />
+        </Grid>
+      </DataTemplate>
+    </ctrls:Flip.ItemTemplate>
+
+  </ctrls:Flip>
+  <!--/Flip Example -->  
+  
+</ContentPage>
