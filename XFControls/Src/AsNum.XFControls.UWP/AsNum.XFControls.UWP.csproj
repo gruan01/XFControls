@@ -116,6 +116,8 @@
     <Compile Include="FontIconRender.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ToastImpl.cs" />
+    <Compile Include="Toast.cs" />
     <EmbeddedResource Include="Properties\AsNum.XFControls.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>

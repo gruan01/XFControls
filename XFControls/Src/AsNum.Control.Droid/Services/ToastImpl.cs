@@ -4,9 +4,9 @@ using AsNum.XFControls.Services;
 using System;
 using Xamarin.Forms;
 
-[assembly: Dependency(typeof(ToasImpl))]
+[assembly: Dependency(typeof(ToastImpl))]
 namespace AsNum.XFControls.Droid.Services {
-    public class ToasImpl : IToast {
+    public class ToastImpl : IToast {
 
         public void Show(string msg, bool longShow = false) {
             try {
