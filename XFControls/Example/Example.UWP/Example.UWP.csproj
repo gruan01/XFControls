@@ -90,6 +90,12 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="1.jpg" />
+    <Content Include="2.jpg" />
+    <Content Include="3.jpg" />
+    <Content Include="4.jpg" />
+    <Content Include="5.jpg" />
+    <Content Include="6.jpg" />
     <Content Include="Assets\Fonts\iconfont.woff" />
     <Content Include="Assets\Fonts\iconfont.ttf" />
     <Content Include="radio1.png" />
