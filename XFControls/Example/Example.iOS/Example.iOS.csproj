@@ -99,12 +99,12 @@
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
     <BundleResource Include="Resources\Fonts\iconfont.woff" />
-    <BundleResource Include="Resources\1.jpg" />
-    <BundleResource Include="Resources\2.jpg" />
-    <BundleResource Include="Resources\3.jpg" />
-    <BundleResource Include="Resources\4.jpg" />
-    <BundleResource Include="Resources\5.jpg" />
-    <BundleResource Include="Resources\6.jpg" />
+    <BundleResource Include="Resources\i1.jpg" />
+    <BundleResource Include="Resources\i2.jpg" />
+    <BundleResource Include="Resources\i3.jpg" />
+    <BundleResource Include="Resources\i4.jpg" />
+    <BundleResource Include="Resources\i5.jpg" />
+    <BundleResource Include="Resources\i6.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />

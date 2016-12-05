@@ -40,27 +40,27 @@ namespace Example
 			= new List<FlipItem>() {
 				new FlipItem() {
 					Desc = "合肥火车站小旅馆生存录",
-					Img = "1.jpg"
+					Img = "i1.jpg"
 				},
 				new FlipItem() {
 					Desc = "2017国考人数达133.8万 近历史最高值",
-					Img = "2.jpg"
+					Img = "i2.jpg"
 				},
 							new FlipItem() {
 					Desc = "新西兰发生8.0级地震 官方发海啸预警",
-					Img = "3.jpg"
+					Img = "i3.jpg"
 				},
 							new FlipItem() {
 					Desc = "武汉长江漂水葫芦 堆积岸边如\"草坪\"",
-					Img = "4.jpg"
+					Img = "i4.jpg"
 				},
 							new FlipItem() {
 					Desc = "江苏办人才交流会 千名台湾青年求职",
-					Img = "5.jpg"
+					Img = "i5.jpg"
 				},
 							new FlipItem() {
 					Desc = "中国歼10女飞行员余旭牺牲 生前照曝光",
-					Img = "6.jpg"
+					Img = "i6.jpg"
 				}
 			};
 
