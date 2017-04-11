@@ -6,6 +6,17 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
+    public enum MarqueeDirect
+    {
+        //从左到右
+        LeftToRight ,
+        //从右到左
+        RightToLeft,
+        //从下往上
+        DownToUp,
+        //从上往下
+        UpToDown
+    }
     /// <summary>
     /// 跑马灯
     /// </summary>
@@ -92,6 +103,11 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region 设置方向
+        private MarqueeDirect _Direct = MarqueeDirect.DownToUp;
+        public MarqueeDirect Direct { get { return _Direct; } set { _Direct = value; } }
+        #endregion
+
         private int? _current = null;
         /// <summary>
         /// 当前序号
@@ -124,13 +140,9 @@ namespace AsNum.XFControls {
             Rectangle beginRect = Rectangle.Zero;
             Rectangle endRect = Rectangle.Zero;
 
-            if (isCurrent) {
-                beginRect = new Rectangle(0, this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
-                endRect = new Rectangle(0, 0, this.Bounds.Width, this.Bounds.Height);
-            } else {
-                beginRect = new Rectangle(0, 0, this.Bounds.Width, this.Bounds.Height);
-                endRect = new Rectangle(0, -this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
-            }
+            //设置起始和终止值             
+            beginRect = setbeginRect(isCurrent, _Direct);
+            endRect = setendRect(isCurrent, _Direct);
 
             view.Layout(beginRect);
             await view.LayoutTo(endRect, easing: Easing.Linear)
@@ -138,6 +150,69 @@ namespace AsNum.XFControls {
                 //BUG 会使填充失效
                 view.IsVisible = isCurrent;
             }, TaskScheduler.FromCurrentSynchronizationContext());
+        }
+
+        private Rectangle setbeginRect(bool iscurrent, MarqueeDirect Direct)
+        {
+            if (iscurrent)
+            {
+                if (Direct == MarqueeDirect.DownToUp)
+                {
+                    return new Rectangle(0, this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
+                }
+                else if (Direct == MarqueeDirect.LeftToRight)
+                {
+                    return new Rectangle(-this.Bounds.Width, 0, this.Bounds.Width, this.Bounds.Height);
+                }
+                else if (Direct == MarqueeDirect.RightToLeft)
+                {
+                    return new Rectangle(this.Bounds.Width, 0, this.Bounds.Width, this.Bounds.Height);
+                }
+                else if (Direct == MarqueeDirect.UpToDown)
+                {
+                    return new Rectangle(0, -this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
+                }
+                else
+                {
+                    return new Rectangle(0, this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
+                }
+            }
+            else
+            {
+                return new Rectangle(0, 0, this.Bounds.Width, this.Bounds.Height);
+            }
+
+        }
+
+        private Rectangle setendRect(bool iscurrent, MarqueeDirect Direct)
+        {
+            if (iscurrent)
+            {
+                return new Rectangle(0, 0, this.Bounds.Width, this.Bounds.Height);
+            }
+            else
+            {
+                if (Direct == MarqueeDirect.DownToUp)
+                {
+                    return new Rectangle(0, -this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
+                }
+                else if (Direct == MarqueeDirect.LeftToRight)
+                {
+                    return new Rectangle(this.Bounds.Width, 0, this.Bounds.Width, this.Bounds.Height);
+                }
+                else if (Direct == MarqueeDirect.RightToLeft)
+                {
+                    return new Rectangle(-this.Bounds.Width, 0, this.Bounds.Width, this.Bounds.Height);
+                }
+                else if (Direct == MarqueeDirect.UpToDown)
+                {
+                    return new Rectangle(0, this.Height, this.Bounds.Width, this.Bounds.Height);
+                }
+                else
+                {
+                    return new Rectangle(0, -this.Bounds.Height, this.Bounds.Width, this.Bounds.Height);
+                }
+            }
         }
 
         private void Begin() {
