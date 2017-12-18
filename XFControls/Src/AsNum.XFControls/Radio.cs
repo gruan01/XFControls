@@ -123,6 +123,26 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region textColor
+        public static readonly BindableProperty TextColorProperty =
+            BindableProperty.Create("TextColor",
+                typeof(Color),
+                typeof(Radio),
+                Color.Black);
+
+        public Color TextColor
+        {
+            get
+            {
+                return (Color)this.GetValue(TextColorProperty);
+            }
+            set
+            {
+                this.SetValue(TextColorProperty, value);
+            }
+        }
+        #endregion
+
         #region Size
         /// <summary>
         /// 单选按钮的大小, 对标签文本无效
@@ -256,8 +276,11 @@ namespace AsNum.XFControls {
             };
             this.Lbl.SetBinding(Label.HorizontalTextAlignmentProperty, new Binding("TextAlignment", source: this));
             this.Lbl.Text = this.Text;
+            this.Lbl.SetBinding(Label.TextColorProperty, new Binding("TextColor", source: this));
+            this.Lbl.TextColor = this.TextColor;
             layout.Children.Add(this.Lbl);
-            Grid.SetColumn(this.Lbl, 1);
+            Grid.SetRow(this.Lbl, 1);
+            //Grid.SetColumn(this.Lbl, 1);
         }
 
         internal void SetTap(ICommand cmd) {

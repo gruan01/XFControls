@@ -211,6 +211,27 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region textColor
+        public static readonly BindableProperty TextColorProperty =
+            BindableProperty.Create("TextColor",
+                typeof(Color),
+                typeof(RadioGroupBase),
+                Color.Black
+                );
+
+        public Color TextColor
+        {
+            get
+            {
+                return (Color)this.GetValue(TextColorProperty);
+            }
+            set
+            {
+                this.SetValue(TextColorProperty, value);
+            }
+        }
+        #endregion
+
 
         /// <summary>
         /// 内部使用的选中命令
@@ -318,6 +339,7 @@ namespace AsNum.XFControls {
             item.SetBinding(Radio.SizeProperty, new Binding(nameof(RadioSize), source: this));
             item.SetBinding(Radio.OnImgProperty, new Binding(nameof(OnImg), source: this));
             item.SetBinding(Radio.OffImgProperty, new Binding(nameof(OffImg), source: this));
+            item.SetBinding(Radio.TextColorProperty, new Binding(nameof(TextColor), source: this));
 
             if (this.UnSelectedItemControlTemplate != null) {
                 item.ControlTemplate = this.UnSelectedItemControlTemplate;

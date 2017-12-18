@@ -37,6 +37,26 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region textColor
+        public static readonly BindableProperty TextColorProperty =
+            BindableProperty.Create("TextColor",
+                typeof(Color),
+                typeof(RadioGroupBase),
+                Color.Black
+                );
+
+        public Color TextColor
+        {
+            get
+            {
+                return (Color)this.GetValue(TextColorProperty);
+            }
+            set
+            {
+                this.SetValue(TextColorProperty, value);
+            }
+        }
+        #endregion
         protected override Layout<View> GetContainer() {
             return new StackLayout() {
                 Orientation = this.Orientation
