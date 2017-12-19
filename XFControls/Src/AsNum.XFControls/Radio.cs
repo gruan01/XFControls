@@ -128,7 +128,8 @@ namespace AsNum.XFControls {
             BindableProperty.Create("TextColor",
                 typeof(Color),
                 typeof(Radio),
-                Color.Black);
+                Color.Black,
+                propertyChanged: ColorTextChanged);
 
         public Color TextColor
         {
@@ -140,6 +141,11 @@ namespace AsNum.XFControls {
             {
                 this.SetValue(TextColorProperty, value);
             }
+        }
+        private static void ColorTextChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var chk = (Radio)bindable;
+            chk.Lbl.TextColor = (Color)newValue;
         }
         #endregion
 
