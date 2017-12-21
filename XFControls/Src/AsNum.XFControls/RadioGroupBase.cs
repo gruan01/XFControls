@@ -211,6 +211,27 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region textColor
+        public static readonly BindableProperty TextColorProperty =
+            BindableProperty.Create("TextColor",
+                typeof(Color),
+                typeof(RadioGroupBase),
+                Color.Black
+                );
+
+        public Color TextColor
+        {
+            get
+            {
+                return (Color)this.GetValue(TextColorProperty);
+            }
+            set
+            {
+                this.SetValue(TextColorProperty, value);
+            }
+        }
+        #endregion
+
 
         /// <summary>
         /// 内部使用的选中命令
@@ -224,6 +245,7 @@ namespace AsNum.XFControls {
 
         //private StackLayout Container = null;
         internal Layout<View> Container { get; private set; }
+        internal StackOrientation Orientation { get; private set; }
 
         private static readonly ControlTemplate DefaultControlTemplate = new DefaultControlTemplate();
 
@@ -232,12 +254,14 @@ namespace AsNum.XFControls {
         /// </summary>
         /// <returns></returns>
         protected abstract Layout<View> GetContainer();
+        protected abstract StackOrientation GetOrientation();
 
         private bool IsInnerChanged = false;
 
         public RadioGroupBase() {
             this.Container = this.GetContainer();
             this.Content = this.Container;
+            this.Orientation = GetOrientation();
 
             this.SelectedCmd = new Command((o) => {
                 if (o == null)
@@ -305,7 +329,8 @@ namespace AsNum.XFControls {
             if (data is Radio) {
                 item = (Radio)data;
             } else {
-                item = new Radio();
+                var isVertical = GetOrientation().Equals(StackOrientation.Vertical);
+                item = new Radio(isVertical);
                 item.Value = data;
 
                 if (!string.IsNullOrWhiteSpace(this.DisplayPath)) {
@@ -318,6 +343,7 @@ namespace AsNum.XFControls {
             item.SetBinding(Radio.SizeProperty, new Binding(nameof(RadioSize), source: this));
             item.SetBinding(Radio.OnImgProperty, new Binding(nameof(OnImg), source: this));
             item.SetBinding(Radio.OffImgProperty, new Binding(nameof(OffImg), source: this));
+            item.SetBinding(Radio.TextColorProperty, new Binding(nameof(TextColor), source: this));
 
             if (this.UnSelectedItemControlTemplate != null) {
                 item.ControlTemplate = this.UnSelectedItemControlTemplate;

@@ -30,7 +30,8 @@
       <RowDefinition Height="30" />
       <RowDefinition Height="30" />
       <RowDefinition Height="30" />
-      <RowDefinition />
+      <RowDefinition Height="30"/>
+      <RowDefinition Height="30"/>
     </Grid.RowDefinitions>
 
     <!--Flip Example-->
@@ -98,22 +99,24 @@
     <!--CheckBox Example-->
 
     <ctrls:RadioGroup Grid.Row="3" 
+                      Grid.RowSpan="2"
                       ItemsSource="{Binding RadioGroupSource}"
                       Orientation="Horizontal"
                       DisplayPath="Name"
                       OnImg="radio1.png"
                       OffImg="radio2.png"
+                      TextColor="Purple"
                       />
 
 
-    <ctrls:RadioButtonGroup Grid.Row="4" 
+    <ctrls:RadioButtonGroup Grid.Row="5" 
                             ItemsSource="{Binding RadioGroupSource}" 
                             DisplayPath="Name"
                             ShowRadio="False"
                             />
     
     <!--TabView Example-->
-    <ctrls:TabView Grid.Row="5"
+    <!--<ctrls:TabView Grid.Row="6"
                    ItemsSource="{Binding TabViewSource}"
                    TabHeightRequest="60"
                    TabPosition="Bottom">
@@ -121,7 +124,7 @@
       <ctrls:TabView.TabTemplate>
         <DataTemplate>
           <StackLayout>
-            <!--FontIcon Example-->
+            --><!--FontIcon Example--><!--
             <ctrls:FontIcon Glyph="{Binding Glyph}"
                             FontFamily="{StaticResource font}"
                             FontSize="25"
@@ -137,7 +140,7 @@
                 </DataTrigger>
               </ctrls:FontIcon.Triggers>
             </ctrls:FontIcon>
-            <!--FontIcon Example-->
+            --><!--FontIcon Example--><!--
 
             <Label Text="{Binding Title}"
                    TextColor="Gray"
@@ -166,7 +169,7 @@
         </DataTemplate>
       </ctrls:TabView.ItemTemplate>
       
-    </ctrls:TabView>
+    </ctrls:TabView>-->
     <!--TabView Example-->
 
 
