@@ -1,4 +1,5 @@
-﻿using AsNum.XFControls.Templates;
+﻿using System;
+using AsNum.XFControls.Templates;
 using Xamarin.Forms;
 
 namespace AsNum.XFControls {
@@ -54,6 +55,11 @@ namespace AsNum.XFControls {
             }
 
             return radio;
+        }
+
+        protected override StackOrientation GetOrientation()
+        {
+            return this.Orientation;
         }
     }
 }
