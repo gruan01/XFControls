@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace AsNum.XFControls {
     /// <summary>
@@ -61,6 +62,11 @@ namespace AsNum.XFControls {
             return new StackLayout() {
                 Orientation = this.Orientation
             };
+        }
+
+        protected override StackOrientation GetOrientation()
+        {
+            return this.Orientation;
         }
     }
 }

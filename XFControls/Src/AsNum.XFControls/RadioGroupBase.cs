@@ -245,6 +245,7 @@ namespace AsNum.XFControls {
 
         //private StackLayout Container = null;
         internal Layout<View> Container { get; private set; }
+        internal StackOrientation Orientation { get; private set; }
 
         private static readonly ControlTemplate DefaultControlTemplate = new DefaultControlTemplate();
 
@@ -253,12 +254,14 @@ namespace AsNum.XFControls {
         /// </summary>
         /// <returns></returns>
         protected abstract Layout<View> GetContainer();
+        protected abstract StackOrientation GetOrientation();
 
         private bool IsInnerChanged = false;
 
         public RadioGroupBase() {
             this.Container = this.GetContainer();
             this.Content = this.Container;
+            this.Orientation = GetOrientation();
 
             this.SelectedCmd = new Command((o) => {
                 if (o == null)
@@ -326,7 +329,8 @@ namespace AsNum.XFControls {
             if (data is Radio) {
                 item = (Radio)data;
             } else {
-                item = new Radio();
+                var isVertical = GetOrientation().Equals(StackOrientation.Vertical);
+                item = new Radio(isVertical);
                 item.Value = data;
 
                 if (!string.IsNullOrWhiteSpace(this.DisplayPath)) {
