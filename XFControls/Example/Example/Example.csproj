@@ -93,7 +93,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\AsNum.XFControls\AsNum.XFControls.csproj">
+  <ProjectReference Include="..\..\Src\AsNum.XFControls\AsNum.XFControls.csproj">
       <Project>{09EE72BC-022B-4C66-B805-706B9B90332D}</Project>
       <Name>AsNum.XFControls</Name>
     </ProjectReference>

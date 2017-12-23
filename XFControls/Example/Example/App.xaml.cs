@@ -10,7 +10,7 @@ namespace Example {
         public App() {
             InitializeComponent();
 
-			MainPage = new FlipExample();// new Home();
+			MainPage = new Home();
         }
 
         protected override void OnStart() {

@@ -123,6 +123,32 @@ namespace AsNum.XFControls {
         }
         #endregion
 
+        #region textColor
+        public static readonly BindableProperty TextColorProperty =
+            BindableProperty.Create("TextColor",
+                typeof(Color),
+                typeof(Radio),
+                Color.Black,
+                propertyChanged: ColorTextChanged);
+
+        public Color TextColor
+        {
+            get
+            {
+                return (Color)this.GetValue(TextColorProperty);
+            }
+            set
+            {
+                this.SetValue(TextColorProperty, value);
+            }
+        }
+        private static void ColorTextChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var chk = (Radio)bindable;
+            chk.Lbl.TextColor = (Color)newValue;
+        }
+        #endregion
+
         #region Size
         /// <summary>
         /// 单选按钮的大小, 对标签文本无效
@@ -225,11 +251,24 @@ namespace AsNum.XFControls {
 
         private Image Icon;
         private Label Lbl;
+        public StackOrientation RadioOrientation;
 
-        public Radio() {
+        public Radio()
+        {
+            Create();
+        }
+        public Radio(bool isHorizontal)
+        {
+            this.RadioOrientation = isHorizontal ? StackOrientation.Horizontal : StackOrientation.Vertical;
+            Create();
+
+        }
+        public void Create() {
             //var layout = new StackLayout() {
             //    Orientation = StackOrientation.Horizontal
             //};
+
+            
             var layout = new Grid() {
                 ColumnDefinitions = new ColumnDefinitionCollection(),
                 HorizontalOptions = LayoutOptions.StartAndExpand,
@@ -256,8 +295,13 @@ namespace AsNum.XFControls {
             };
             this.Lbl.SetBinding(Label.HorizontalTextAlignmentProperty, new Binding("TextAlignment", source: this));
             this.Lbl.Text = this.Text;
+            this.Lbl.SetBinding(Label.TextColorProperty, new Binding("TextColor", source: this));
+            this.Lbl.TextColor = this.TextColor;
             layout.Children.Add(this.Lbl);
-            Grid.SetColumn(this.Lbl, 1);
+            if (this.RadioOrientation.Equals(StackOrientation.Vertical))
+                Grid.SetRow(this.Lbl, 1);//Vertical
+            else
+                Grid.SetColumn(this.Lbl, 1); //Horizontal
         }
 
         internal void SetTap(ICommand cmd) {
