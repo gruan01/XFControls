@@ -19,7 +19,6 @@ namespace Example.Droid {
             base.OnCreate(bundle);
 
             AsNumAssemblyHelper.HoldAssembly();
-
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
