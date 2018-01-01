@@ -44,7 +44,7 @@ namespace Example {
         public IEnumerable<RadioItem> RadioGroupSource { get; }
             = new List<RadioItem>() {
                 new RadioItem() {ID = 0, Name = "同意" },
-                new RadioItem() {ID = 1, Name="不同意" },
+                new RadioItem() {ID = 1, Name="<b>不同意</b>" },
                 new RadioItem() {ID = 2, Name = "中立" }
             };
 

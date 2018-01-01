@@ -1,4 +1,5 @@
 ﻿using AsNum.XFControls.Binders;
+using Plugin.HtmlLabel;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -250,7 +251,8 @@ namespace AsNum.XFControls {
 
 
         private Image Icon;
-        private Label Lbl;
+        //private Label Lbl;
+        private HtmlLabel Lbl;
         public StackOrientation RadioOrientation;
 
         public Radio()
@@ -287,7 +289,7 @@ namespace AsNum.XFControls {
             layout.Children.Add(this.Icon);
             Grid.SetColumn(this.Icon, 0);
 
-            this.Lbl = new Label() {
+            this.Lbl = new HtmlLabel() {
                 VerticalTextAlignment = TextAlignment.Center,
                 //HorizontalOptions = LayoutOptions.Fill,
                 //HorizontalTextAlignment = TextAlignment.Center,

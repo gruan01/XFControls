@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>XFControls</id>
-        <version>1.0.0.6</version>
+        <version>1.0.0.7</version>
         <title>Xamarin.Forms Controls set</title>
         <authors>xling</authors>
         <owners>asnum</owners>
@@ -10,14 +10,18 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <developmentDependency>true</developmentDependency>
         <description>XFControls is a set of Xamarin.Forms' control.
-Include Border / CircleBox / TabView / Flip / FontIcon / CheckBox / Radio / RaidoGroup / RaidoButtonGroup / Marquee /  RatingBar / Stepper / UniformGrid / WrapLayout / Repeater etc...</description>
+					Include Border / CircleBox / TabView / Flip / FontIcon / CheckBox / Radio / RaidoGroup 
+					/ RaidoButtonGroup / Marquee /  RatingBar / Stepper / UniformGrid / WrapLayout / Repeater etc...
+		</description>
         <releaseNotes>#1, DataPicker support TextColor / DividerColor &amp; FontSize
-#2, Assembly holder for linker.
-ios project Please insert the following code before global::Xamarin.Forms.Forms.Init(); at file AppDelegate.cs
- AsNumAssemblyHelper.HoldAssembly();
+					  #2, Assembly holder for linker.
+					  ios project Please insert the following code before global::Xamarin.Forms.Forms.Init(); at file AppDelegate.cs
+				      AsNumAssemblyHelper.HoldAssembly();
 
-Android Project also please insert the following code before Xamarin.Forms.Forms.Init(this, bundle);
- AsNumAssemblyHelper.HoldAssembly();</releaseNotes>
+					  Android Project also please insert the following code before Xamarin.Forms.Forms.Init(this, bundle);
+					  AsNumAssemblyHelper.HoldAssembly();
+					  #3, RaidoGroup support TextColor and Html in the label.
+		</releaseNotes>
         <copyright />
         <tags>Xamarin Forms controls</tags>
         <dependencies>
