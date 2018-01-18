@@ -19,7 +19,7 @@
 
 ## [Documents](https://github.com/gruan01/XFControls/blob/master/XFControls/Documents/index.md)
 
-## XFCotrols include:
+## XFControls include:
 * Border
 * CheckBox
 * CircleBox
