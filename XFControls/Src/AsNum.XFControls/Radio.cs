@@ -1,13 +1,15 @@
 ﻿using AsNum.XFControls.Binders;
-using Plugin.HtmlLabel;
+using LabelHtml.Forms.Plugin.Abstractions;
 using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace AsNum.XFControls {
+namespace AsNum.XFControls
+{
     /// <summary>
     /// 单选按钮(模拟)
     /// </summary>
-    public class Radio : ContentView {
+    public class Radio : ContentView
+    {
 
 
         #region value
@@ -22,11 +24,14 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 单选项的值
         /// </summary>
-        public object Value {
-            get {
+        public object Value
+        {
+            get
+            {
                 return this.GetValue(ValueProperty);
             }
-            set {
+            set
+            {
                 this.SetValue(ValueProperty, value);
             }
         }
@@ -51,7 +56,8 @@ namespace AsNum.XFControls {
         /// <param name="bindable"></param>
         /// <param name="oldValue"></param>
         /// <param name="newValue"></param>
-        private static void IsSelectedChanged(BindableObject bindable, object oldValue, object newValue) {
+        private static void IsSelectedChanged(BindableObject bindable, object oldValue, object newValue)
+        {
             var radio = (Radio)bindable;
             var source = (bool)newValue ? radio.OnImg : radio.OffImg;
             radio.Icon.Source = source;
@@ -60,11 +66,14 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 是否选中
         /// </summary>
-        public bool IsSelected {
-            get {
+        public bool IsSelected
+        {
+            get
+            {
                 return (bool)this.GetValue(IsSelectedProperty);
             }
-            set {
+            set
+            {
                 this.SetValue(IsSelectedProperty, value);
             }
         }
@@ -82,7 +91,8 @@ namespace AsNum.XFControls {
                                     propertyChanged: TextChanged
                                     );
 
-        private static void TextChanged(BindableObject bindable, object oldValue, object newValue) {
+        private static void TextChanged(BindableObject bindable, object oldValue, object newValue)
+        {
             var radio = (Radio)bindable;
             radio.Lbl.Text = (string)newValue;
         }
@@ -90,11 +100,14 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 标签文本
         /// </summary>
-        public string Text {
-            get {
+        public string Text
+        {
+            get
+            {
                 return (string)this.GetValue(TextProperty);
             }
-            set {
+            set
+            {
                 this.SetValue(TextProperty, value);
             }
         }
@@ -114,11 +127,14 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 标签文本的对齐方式
         /// </summary>
-        public TextAlignment TextAlignment {
-            get {
+        public TextAlignment TextAlignment
+        {
+            get
+            {
                 return (TextAlignment)this.GetValue(TextAlignmentProperty);
             }
-            set {
+            set
+            {
                 this.SetValue(TextAlignmentProperty, value);
             }
         }
@@ -163,16 +179,20 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 单选按钮的大小, 对标签文本无效
         /// </summary>
-        internal double Size {
-            get {
+        internal double Size
+        {
+            get
+            {
                 return (double)this.GetValue(SizeProperty);
             }
-            set {
+            set
+            {
                 this.SetValue(SizeProperty, value);
             }
         }
 
-        private static void IconSizeChanged(BindableObject bindable, object oldValue, object newValue) {
+        private static void IconSizeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
             var chk = (Radio)bindable;
             chk.Icon.WidthRequest = chk.Icon.HeightRequest = (double)newValue;
 
@@ -192,11 +212,14 @@ namespace AsNum.XFControls {
         /// <summary>
         /// 是否显示按钮图标(用于RadioButton)
         /// </summary>
-        public bool ShowRadio {
-            get {
+        public bool ShowRadio
+        {
+            get
+            {
                 return (bool)this.GetValue(ShowRadioProperty);
             }
-            set {
+            set
+            {
                 this.SetValue(ShowRadioProperty, value);
             }
         }
@@ -212,11 +235,14 @@ namespace AsNum.XFControls {
                 propertyChanged: ImgSourceChanged
                 );
 
-        public ImageSource OnImg {
-            get {
+        public ImageSource OnImg
+        {
+            get
+            {
                 return (ImageSource)this.GetValue(OnImgProperty);
             }
-            set {
+            set
+            {
                 this.SetValue(OnImgProperty, value);
             }
         }
@@ -229,21 +255,26 @@ namespace AsNum.XFControls {
         propertyChanged: ImgSourceChanged
                 );
 
-        public ImageSource OffImg {
-            get {
+        public ImageSource OffImg
+        {
+            get
+            {
                 return (ImageSource)this.GetValue(OffImgProperty);
             }
-            set {
+            set
+            {
                 this.SetValue(OffImgProperty, value);
             }
         }
 
-        private static void ImgSourceChanged(BindableObject bindable, object oldValue, object newValue) {
+        private static void ImgSourceChanged(BindableObject bindable, object oldValue, object newValue)
+        {
             var chk = (Radio)bindable;
             chk.UpdateImageSource(chk.OnImg, chk.OffImg);
         }
 
-        private void UpdateImageSource(ImageSource on, ImageSource off) {
+        private void UpdateImageSource(ImageSource on, ImageSource off)
+        {
             this.Icon.Source = this.IsSelected ? on : off;
         }
 
@@ -265,13 +296,15 @@ namespace AsNum.XFControls {
             Create();
 
         }
-        public void Create() {
+        public void Create()
+        {
             //var layout = new StackLayout() {
             //    Orientation = StackOrientation.Horizontal
             //};
 
-            
-            var layout = new Grid() {
+
+            var layout = new Grid()
+            {
                 ColumnDefinitions = new ColumnDefinitionCollection(),
                 HorizontalOptions = LayoutOptions.StartAndExpand,
                 VerticalOptions = LayoutOptions.StartAndExpand
@@ -280,7 +313,8 @@ namespace AsNum.XFControls {
             layout.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Star });
             this.Content = layout;
 
-            this.Icon = new Image() {
+            this.Icon = new Image()
+            {
                 Source = this.OffImg,
                 WidthRequest = this.Size,
                 HeightRequest = this.Size
@@ -289,7 +323,8 @@ namespace AsNum.XFControls {
             layout.Children.Add(this.Icon);
             Grid.SetColumn(this.Icon, 0);
 
-            this.Lbl = new HtmlLabel() {
+            this.Lbl = new HtmlLabel()
+            {
                 VerticalTextAlignment = TextAlignment.Center,
                 //HorizontalOptions = LayoutOptions.Fill,
                 //HorizontalTextAlignment = TextAlignment.Center,
@@ -306,7 +341,8 @@ namespace AsNum.XFControls {
                 Grid.SetColumn(this.Lbl, 1); //Horizontal
         }
 
-        internal void SetTap(ICommand cmd) {
+        internal void SetTap(ICommand cmd)
+        {
             TapBinder.SetCmd(this.Content, cmd);
             TapBinder.SetParam(this.Content, this);
         }

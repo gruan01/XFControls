@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Example.Home"
@@ -31,7 +31,7 @@
       <RowDefinition Height="30" />
       <RowDefinition Height="30" />
       <RowDefinition Height="30"/>
-      <RowDefinition Height="30"/>
+      <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
     <!--Flip Example-->
@@ -114,7 +114,9 @@
                             DisplayPath="Name"
                             ShowRadio="False"
                             />
-    
+    <Frame Grid.Row="6" BackgroundColor="Red" Margin="10" CornerRadius="20">
+            <Label Text="Hello" TextColor="White"/>
+        </Frame>
     <!--TabView Example-->
     <!--<ctrls:TabView Grid.Row="6"
                    ItemsSource="{Binding TabViewSource}"
