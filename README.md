@@ -1,3 +1,7 @@
+> Sorry, this project's dependency Xamarin.Forms' version is very old (2.xx), and I'm have no time to maintain it,  So say sorry for everyone.
+
+ 对不起，这个项目的依赖Xamarin.Forms的版本很旧（2.xx），我没有时间维护它，所以对大家说声抱歉。
+
 # XFControl 是什么 ? What is it ?
 
 * AsNum.XFControls 是一组用于 Xamarin.Forms 的自定义控件集.
